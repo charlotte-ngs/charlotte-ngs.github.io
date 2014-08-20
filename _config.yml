@@ -1,0 +1,22 @@
+# Dependencies
+markdown:         redcarpet
+pygments:         true
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Charlotte-Ngs
+tagline:          Charlotte-Ngs Project
+url:              http://charlotte-ngs.github.io
+paginate:         1
+baseurl:          /
+author:
+  name:           Charlotte-Ngs Team
+  url:            
+  email:          charlotte-ngs@gmail.com
+
+# Custom vars
+version:          1.0.0
+github:
+  repo:           https://github.com/charlotte-ngs.github.io
