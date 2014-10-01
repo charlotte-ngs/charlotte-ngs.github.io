@@ -7,14 +7,14 @@ permalink:        pretty
 
 # Setup
 title:            Charlotte-Ngs
-tagline:          Charlotte-Ngs Project
+tagline:          Home
 url:              http://charlotte-ngs.github.io
 paginate:         1
 baseurl:          /
 author:
   name:           Charlotte-Ngs Team
   url:            
-  email:          charlotte-ngs@gmail.com
+  email:          ngs.charlotte@gmail.com
 
 # Custom vars
 version:          1.0.0
