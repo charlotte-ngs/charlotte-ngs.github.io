@@ -26,4 +26,10 @@ paradigm of reproducible research.
 ## Why R
 
 ## Introduction to R
+Learning how to use a system like R is associated with a certain learning curve. 
+Some people believe that this learning curve is steep which is completely subjective. 
+
+As an introduction, I have put together some slides which I would use to introduce 
+R to an audience without any experience. In case you are interested you can read more 
+[here ...](http://charlotte-ngs.github.io/RCrashCourse)
 
