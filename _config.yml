@@ -11,7 +11,7 @@ title:            Charlotte-Ngs
 tagline:          The Project Platform
 url:              http://charlotte-ngs.github.io
 paginate:         1
-baseurl:          /
+baseurl:          '/'
 author:
   name:           Charlotte-Ngs Team
   url:            
