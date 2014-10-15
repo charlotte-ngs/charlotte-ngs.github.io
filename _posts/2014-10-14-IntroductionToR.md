@@ -25,7 +25,7 @@ paradigm of reproducible research.
 
 ## Why R
 
-## Introduction to R
+## R Crash Course
 Learning how to use a system like R is associated with a certain learning curve. 
 Some people believe that this learning curve is steep which is completely subjective. 
 
