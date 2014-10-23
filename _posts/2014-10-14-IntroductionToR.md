@@ -24,12 +24,16 @@ In general Bioconductor documentation is provided by vignettes following the
 paradigm of reproducible research.
 
 ## Why R
+Because first of all R is very fast in prototyping and second R is easy to extend 
+either by writing packages in R or by using its interfaces to other languages. 
+
+Dirk Edelbuettel explained why to use R in a [Google Tech Talk](https://www.youtube.com/watch?v=UZkaZhsOfT4)
 
 ## R Crash Course
 Learning how to use a system like R is associated with a certain learning curve. 
-Some people believe that this learning curve is steep which is completely subjective. 
+Some people pretend that this curve is especially steep when learning how to use R. 
 
 As an introduction, I have put together some slides which I would use to introduce 
-R to an audience without any experience. In case you are interested you can read more 
-[here ...](http://charlotte-ngs.github.io/RCrashCourse)
+R to an audience without prior knowledge. In case you are interested you can [read more 
+here ...](http://charlotte-ngs.github.io/RCrashCourse)
 
