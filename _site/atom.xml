@@ -4,13 +4,70 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2014-10-16T05:20:44+02:00</updated>
+ <updated>2014-10-23T13:30:34+02:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
    <email>ngs.charlotte@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Introduction To Dplyr</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/22/IntroductionToDplyr/"/>
+   <updated>2014-10-22T00:00:00+02:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/22/IntroductionToDplyr</id>
+   <content type="html">## Before dplyr
+The R-package `dplyr` represents an important milestone in the history of R. Before `dplyr` existed, data manipulation was not considered to be a strong point of the R system. I even remember very vaguely that even John Chambers was advocating in one of his talks many years ago, that data preparation is better done by some scripting language, like python or perl.
+
+## What is it all about
+`dplyr` can be understood as a language of data manipulation. The language consists only of a small number of verbs each designed to perform a well defined task. Each of the verbs is implemented in an R function. Data manipulation processes can be constructed by chaining together sequences of verbs to a pipeline.
+
+## Getting started
+[Introductory slides](http://charlotte-ngs.github.io/dplyrIntro) show the basic usage of `dplyr` using Andersons Iris data set.
+
+The `dplyr` package is available through CRAN, hence `dplyr` can be installed via
+```{r, eval=FALSE}
+install.packages(&quot;dplyr&quot;)
+```
+
+The introductory vignette to `dplyr` available through
+
+```{r, eval=FALSE,results=&#39;hide&#39;}
+browseVignettes(package = &quot;dplyr&quot;)
+```
+
+demonstrates the application of `dplyr` to the New York City airport flights dataset.
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introduction To Dplyr</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/22/IntroductionToDplyr/"/>
+   <updated>2014-10-22T00:00:00+02:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/22/IntroductionToDplyr</id>
+   <content type="html">&lt;h2&gt;Before dplyr&lt;/h2&gt;
+
+&lt;p&gt;The R-package &lt;code&gt;dplyr&lt;/code&gt; represents an important milestone in the history of R. Before &lt;code&gt;dplyr&lt;/code&gt; existed, data manipulation was not considered to be a strong point of the R system. I even remember very vaguely that even John Chambers was advocating in one of his talks many years ago, that data preparation is better done by some scripting language, like python or perl.&lt;/p&gt;
+
+&lt;h2&gt;What is it all about&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;dplyr&lt;/code&gt; can be understood as a language of data manipulation. The language consists only of a small number of verbs each designed to perform a well defined task. Each of the verbs is implemented in an R function. Data manipulation processes can be constructed by chaining together sequences of verbs to a pipeline.&lt;/p&gt;
+
+&lt;h2&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://charlotte-ngs.github.io/dplyrIntro&quot;&gt;Introductory slides&lt;/a&gt; show the basic usage of &lt;code&gt;dplyr&lt;/code&gt; using Andersons Iris data set.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;dplyr&lt;/code&gt; package is available through CRAN, hence &lt;code&gt;dplyr&lt;/code&gt; can be installed via&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;r language-r&quot; data-lang=&quot;r&quot;&gt;install.packages&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;dplyr&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The introductory vignette to &lt;code&gt;dplyr&lt;/code&gt; available through&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;r language-r&quot; data-lang=&quot;r&quot;&gt;browseVignettes&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;package &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;dplyr&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;demonstrates the application of &lt;code&gt;dplyr&lt;/code&gt; to the New York City airport flights dataset.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Introduction to R</title>
@@ -41,14 +98,19 @@ paradigm of reproducible research.&lt;/p&gt;
 
 &lt;h2&gt;Why R&lt;/h2&gt;
 
+&lt;p&gt;Because first of all R is very fast in prototyping and second R is easy to extend 
+either by writing packages in R or by using its interfaces to other languages. &lt;/p&gt;
+
+&lt;p&gt;Dirk Edelbuettel explained why to use R in a &lt;a href=&quot;https://www.youtube.com/watch?v=UZkaZhsOfT4&quot;&gt;Google Tech Talk&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2&gt;R Crash Course&lt;/h2&gt;
 
 &lt;p&gt;Learning how to use a system like R is associated with a certain learning curve. 
-Some people believe that this learning curve is steep which is completely subjective. &lt;/p&gt;
+Some people pretend that this curve is especially steep when learning how to use R. &lt;/p&gt;
 
 &lt;p&gt;As an introduction, I have put together some slides which I would use to introduce 
-R to an audience without any experience. In case you are interested you can read more 
-&lt;a href=&quot;http://charlotte-ngs.github.io/RCrashCourse&quot;&gt;here ...&lt;/a&gt;&lt;/p&gt;
+R to an audience without prior knowledge. In case you are interested you can &lt;a href=&quot;http://charlotte-ngs.github.io/RCrashCourse&quot;&gt;read more 
+here ...&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
@@ -68,6 +130,23 @@ R to an audience without any experience. In case you are interested you can read
 &lt;p&gt;As mentioned above, the goal for my ideal blogging environment was to write one source file with everything and then have some clever system produce all the output that was desired. I was reading some blog posts about blogging like a hacker &lt;code&gt;reference needed here&lt;/code&gt; and thereby I found using GitHub pages was what I wanted.&lt;/p&gt;
 
 &lt;h2&gt;GitHub&lt;/h2&gt;
+
+&lt;p&gt;GitHub offers free hosting of custom web-sites through GitHub pages. All one has to do is &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;create an account on GitHub and &lt;/li&gt;
+&lt;li&gt;within that account create a repository called &lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt; where &lt;code&gt;&amp;lt;username&amp;gt;&lt;/code&gt; is to be replaced by the actual username you chose for the GitHub account. &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;After these two steps, your blog web-site is available at &lt;code&gt;username.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Jekyll is a blog-aware static site generator which means documents in Markdown format are automatically conterted into static HTML pages. Furthermore, running Jekyll on your local machine gives you the possibility to serve every page locally without having to upload anything. &lt;/p&gt;
+
+&lt;h2&gt;Poole&lt;/h2&gt;
+
+&lt;p&gt;Poole provides an example setup for a Jekyll site. It comes with a set of templates, pages, styles and posts. This is very convenient for any beginner, because all one has to do is clone the sources provided by Poole, change the content to its own site and a new blog-site is ready to be served in only a very short time. &lt;/p&gt;
 </content>
  </entry>
  
