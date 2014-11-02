@@ -4,7 +4,7 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2014-10-23T13:30:34+02:00</updated>
+ <updated>2014-11-01T13:25:57+01:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
@@ -13,32 +13,53 @@
 
  
  <entry>
-   <title>Introduction To Dplyr</title>
-   <link href="http://charlotte-ngs.github.io//2014/10/22/IntroductionToDplyr/"/>
-   <updated>2014-10-22T00:00:00+02:00</updated>
-   <id>http://charlotte-ngs.github.io/2014/10/22/IntroductionToDplyr</id>
-   <content type="html">## Before dplyr
-The R-package `dplyr` represents an important milestone in the history of R. Before `dplyr` existed, data manipulation was not considered to be a strong point of the R system. I even remember very vaguely that even John Chambers was advocating in one of his talks many years ago, that data preparation is better done by some scripting language, like python or perl.
+   <title>Update Mac Os X to Yosemite</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/27/UpdateYosemite/"/>
+   <updated>2014-10-27T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/27/UpdateYosemite</id>
+   <content type="html">&lt;h2&gt;Summary&lt;/h2&gt;
 
-## What is it all about
-`dplyr` can be understood as a language of data manipulation. The language consists only of a small number of verbs each designed to perform a well defined task. Each of the verbs is implemented in an R function. Data manipulation processes can be constructed by chaining together sequences of verbs to a pipeline.
+&lt;p&gt;All those who want to stay on the safe side and hate to work around issues and new features, are best advised to wait with an upgrade to Yosemite. Also for production systems, an upgrade is probably still a bit early. Unlike with the previous upgrade to Mac Os X 10.9, no real performance boost is perceived when upgading to &lt;code&gt;Yosemite&lt;/code&gt;. Although one has to admit that all the points mentioned here against the upgrade are nowhere near the nightmare of an upgrade from Windows 7 to 8. &lt;/p&gt;
 
-## Getting started
-[Introductory slides](http://charlotte-ngs.github.io/dplyrIntro) show the basic usage of `dplyr` using Andersons Iris data set.
+&lt;h2&gt;Prerequisite&lt;/h2&gt;
 
-The `dplyr` package is available through CRAN, hence `dplyr` can be installed via
-```{r, eval=FALSE}
-install.packages(&quot;dplyr&quot;)
-```
+&lt;p&gt;Before one upgrades a whole operating system, a complete backup of user data is an absolute must. Mac Os X has a backup utility called TimeMachine which comes for free with the system. All one has to do is connect an external hard-drive and start a backup using Time Machine by clicking on the following icon.&lt;/p&gt;
 
-The introductory vignette to `dplyr` available through
+&lt;p&gt;&lt;img src=&quot;img/2014-10-27-UpdateYosemite/TimeMachine.png&quot; alt=&quot;Time Machine&quot;&gt;&lt;/p&gt;
 
-```{r, eval=FALSE,results=&#39;hide&#39;}
-browseVignettes(package = &quot;dplyr&quot;)
-```
+&lt;h2&gt;Download&lt;/h2&gt;
 
-demonstrates the application of `dplyr` to the New York City airport flights dataset.
+&lt;p&gt;Last weekend I decided to upgrade Mac Os X on my Mac Book to version 10.10 aka &lt;code&gt;Yosemite&lt;/code&gt;. The upgrade process is started from the AppStore. When you open the AppStore there is a big banner with the Yosemite Logo and a small Update button. Whenever you click on that button the download starts. &lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;img/2014-10-27-UpdateYosemite/AppStoreYosemite.png&quot; alt=&quot;Yosemite Logo&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;It took more than three hours to download which is most likely caused by my very slow connection to the internet at home. In total, the upgrade to Yosemite is worth 5.16 GB of data. &lt;/p&gt;
+
+&lt;h2&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Once the download was completed the installation of the upgrade can be started from the Download folder. I have not followed the installation closely, but it took quite a long time and several restarts were required. The whole installation did not require any intervention from the user side. In case somebody is interested in more details, one cat press Command-L which is supposed to show more details about the progress of the installation. The timings shown during the installation were not very accurate. For about half an hour the installation screen was showing the message &lt;code&gt;2 minutes left ...&lt;/code&gt;. It seams that the upgrade utility is copying parts of the user data or installed software to a secure place and that can take a lot of time depending on how much data has to be copied.&lt;/p&gt;
+
+&lt;h2&gt;Aftermath&lt;/h2&gt;
+
+&lt;p&gt;The whole upgrade process went very smoothly. The default desktop background changed and the dock looks different but appart from that no obvious changes. When maximizing a window using the green dot in the top-left corner, the window is shown in a full-screen mode. This full-screen mode can be terminated by pointing the cursor to the top border of the screen. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;img/2014-10-27-UpdateYosemite/RedYellowGreenDots.png&quot; alt=&quot;RedYellowGreenDots&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Path Issue&lt;/h3&gt;
+
+&lt;p&gt;In a &lt;a href=&quot;http://tex.stackexchange.com/questions/208181/why-did-my-tex-related-gui-program-stop-working-in-mac-os-x-yosemite&quot;&gt;post on tex.stackexchange.com&lt;/a&gt;, Adam Maxwell mentioned that GUI programs using TEX tools like &lt;code&gt;pdflatex&lt;/code&gt; stopped working after upgrading to Yosemite. In the background section of the post the author explains that GUI programs do no longer inherit variables from shell init files like .bash_profile, .bashrc or others.&lt;/p&gt;
+
+&lt;p&gt;For RStudio this meant that when creating a new Sweave document, RStudio would put up the message that it cannot find any TeX installation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;img/2014-10-27-UpdateYosemite/NoTeXInstallationRStudio.png&quot; alt=&quot;No TeX Installation in RStudio&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;When trying to compile, the unsurprising error message appears in the Compile PDF console.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;img/2014-10-27-UpdateYosemite/PdflatexErrorMessage.png&quot; alt=&quot;Pdflatex Error Message&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Fix for RStudio&lt;/h3&gt;
+
+&lt;p&gt;Shortly after the post by Adam Maxwell there were posts appearing on &lt;a href=&quot;http://www.r-bloggers.com/r-and-rstudio-incompatibility-with-yosemite-mac-os-x-10-10/?utm_source=feedburner&amp;amp;utm_medium=email&amp;amp;utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29&quot;&gt;Rbloggers&lt;/a&gt; and the RStudio web-site announcing that the latest version (Version 0.98.1083) of RStudio would fix the path problem. After installing that latest version, no more messages of missing TeX installations and compiling Sweave documents worked again. &lt;/p&gt;
 </content>
  </entry>
  
