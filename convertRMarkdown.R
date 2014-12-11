@@ -12,8 +12,8 @@
 #' @author Jason Bryer <jason@bryer.org>
 convertRMarkdown <- function(dir=getwd(), 
                              images.dir=dir, 
-                             images.url='/images/',
-                             out_ext='.markdown',
+                             images.url='',
+                             out_ext='.md',
                              in_ext='.rmd',
                              recursive=FALSE) 
 {  
@@ -45,7 +45,7 @@ convertRMarkdown <- function(dir=getwd(),
           opts_knit$set(base.url=images.url)
           try(knit(text=content, output=outFile), silent=FALSE)
         } else {
-          warning(paste("Not processing ", f, ", status is '", status,                   "'. Set status to 'process' to convert.", sep=''))
+          warning(paste("Not processing ", f, ", status is '", status,  "'. Set status to 'process' to convert.", sep=''))
         }
       } else {
         warning("Status not found in front matter.")
