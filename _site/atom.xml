@@ -4,7 +4,7 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2014-11-17T06:27:06+01:00</updated>
+ <updated>2014-12-11T18:01:17+01:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
@@ -14,208 +14,16 @@
  
  <entry>
    <title>Multiple Linear Regression In R</title>
-   <link href="http://charlotte-ngs.github.io//2014/11/04/MultipleRegressionInR/"/>
-   <updated>2014-11-04T00:00:00+01:00</updated>
-   <id>http://charlotte-ngs.github.io/2014/11/04/MultipleRegressionInR</id>
-   <content type="html">&lt;h2&gt;Disclaimer&lt;/h2&gt;
+   <link href="http://charlotte-ngs.github.io//2014/11/24/MultipleRegressionInR/"/>
+   <updated>2014-11-24T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/11/24/MultipleRegressionInR</id>
+   <content type="html">&lt;p&gt;At the time I was putting together some slides on an &lt;a href=&quot;http://charlotte-ngs.github.io/RCrashCourse&quot;&gt;introduction to R&lt;/a&gt;, I wanted to integrate something very basic about linear modelling. But very soon I realized that this would be too much material for one series of slides. Hence I decided to put away the material on linear models for a separate post and a new series of slides.&lt;/p&gt;
 
-&lt;p&gt;This post is a summary of one chapter of course notes on Computational Statistics taught at ETH Zurich by [@BM2014]. For all those who are interested in a mathematically rigorous presentation of some topics of computational statistics are invited to have a look at the course notes. The link is included in the reference section of this post.&lt;/p&gt;
+&lt;p&gt;The introduction to multiple linear regression comes in two versions. First, an example analysis of the Chatterjee–Price Attitude dataset is described in a &lt;a href=&quot;http://charlotte-ngs.github.io/MultLinRegInR/notes/2014-11-04-MultipleRegressionInR.html&quot;&gt;blog post&lt;/a&gt;. Second, the same material is also presented as a &lt;a href=&quot;http://charlotte-ngs.github.io/MultLinRegInR/slides/MultLinRegInR.html&quot;&gt;series of slides&lt;/a&gt; which can freely be used for courses or presentations. &lt;/p&gt;
 
-&lt;p&gt;I can also recommend a completely informal introduction of least squares by Rafael Irizarry. In his &lt;a href=&quot;https://www.youtube.com/watch?v=3KFwJd5-JD8&quot;&gt;video&lt;/a&gt; he shows how to teach least squares to a fifth grader.&lt;/p&gt;
+&lt;h2&gt;Disclaimer&lt;/h2&gt;
 
-&lt;h2&gt;A First Example Analysis In R&lt;/h2&gt;
-
-&lt;p&gt;We start with a practical example of a multiple linear regression analysis in R. For all those who are interested in a more formal introduction are advice to skip to the next section.&lt;/p&gt;
-
-&lt;p&gt;For our first analysis, we are using the Chatterjee–Price Attitude data-set. This data-set is part of the R-system and is described in the help file available via&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;?attitude
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The data objects are survey results of clerical employees of a company. The data-set consists of 30 observations on 7 variables. The data is organsied such that variables are stored in columns and observations are stored in rows.  &lt;/p&gt;
-
-&lt;p&gt;Let us assume that we focus on one particular variable, namely in the variable called &lt;code&gt;rating&lt;/code&gt;. We are interested in finding relationships that are found between &lt;code&gt;rating&lt;/code&gt; and any of the other variables.&lt;/p&gt;
-
-&lt;h3&gt;Data inspection&lt;/h3&gt;
-
-&lt;p&gt;Before getting into any model fitting, it is always a good idea to get an overview of the data by a pairs plot. The pairs plot is composed of a matrix of scatter-plots for all combinations of variables in the data-set.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;require(stats); require(graphics)
-pairs(attitude, main = &amp;quot;attitude data&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2014-11-04-MultipleRegressionInR/figure/unnamed-chunk-2.png&quot; alt=&quot;plot of chunk unnamed-chunk-2&quot;&gt; &lt;/p&gt;
-
-&lt;p&gt;Simple summary statistics are obtained by &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;summary(attitude)
-
-##      rating       complaints     privileges      learning   
-##  Min.   :40.0   Min.   :37.0   Min.   :30.0   Min.   :34.0  
-##  1st Qu.:58.8   1st Qu.:58.5   1st Qu.:45.0   1st Qu.:47.0  
-##  Median :65.5   Median :65.0   Median :51.5   Median :56.5  
-##  Mean   :64.6   Mean   :66.6   Mean   :53.1   Mean   :56.4  
-##  3rd Qu.:71.8   3rd Qu.:77.0   3rd Qu.:62.5   3rd Qu.:66.8  
-##  Max.   :85.0   Max.   :90.0   Max.   :83.0   Max.   :75.0  
-##      raises        critical       advance    
-##  Min.   :43.0   Min.   :49.0   Min.   :25.0  
-##  1st Qu.:58.2   1st Qu.:69.2   1st Qu.:35.0  
-##  Median :63.5   Median :77.5   Median :41.0  
-##  Mean   :64.6   Mean   :74.8   Mean   :42.9  
-##  3rd Qu.:71.0   3rd Qu.:80.0   3rd Qu.:47.8  
-##  Max.   :88.0   Max.   :92.0   Max.   :72.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;A first linear model&lt;/h3&gt;
-
-&lt;p&gt;In a first step, we are interested in how the 6 variables complaints, privileges, learning, raises, critical and advance are related to the observed overall rating.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;fm1 &amp;lt;- lm(rating ~ ., data = attitude)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The call to function &lt;code&gt;lm()&lt;/code&gt; fits the multiple linear regression model using variable &lt;code&gt;rating&lt;/code&gt; as response and all other variables as predictors. Since we are assigning the result to a variable, noting is returned. But the resulting linear model object has a summary method which shows us the most important results.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;summary(fm1)
-
-## 
-## Call:
-## lm(formula = rating ~ ., data = attitude)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -10.942  -4.356   0.316   5.543  11.599 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  10.7871    11.5893    0.93   0.3616    
-## complaints    0.6132     0.1610    3.81   0.0009 ***
-## privileges   -0.0731     0.1357   -0.54   0.5956    
-## learning      0.3203     0.1685    1.90   0.0699 .  
-## raises        0.0817     0.2215    0.37   0.7155    
-## critical      0.0384     0.1470    0.26   0.7963    
-## advance      -0.2171     0.1782   -1.22   0.2356    
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 7.07 on 23 degrees of freedom
-## Multiple R-squared:  0.733,  Adjusted R-squared:  0.663 
-## F-statistic: 10.5 on 6 and 23 DF,  p-value: 1.24e-05
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The above summary of the linear model object contains the following details: &lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;empirical quantiles of the residuals&lt;/li&gt;
-&lt;li&gt;estimates of the linear coefficients of each predictor variable&lt;/li&gt;
-&lt;li&gt;standard errors of each estimate&lt;/li&gt;
-&lt;li&gt;the t-Test statistic for the null-hypotheses of each coefficient being $0$&lt;/li&gt;
-&lt;li&gt;the corresponding two-sided p-values to the above mentioned null-hypotheses&lt;/li&gt;
-&lt;li&gt;some abbreviations of the strength of significance of the above mentioned test&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Diagnostics plots&lt;/h3&gt;
-
-&lt;p&gt;Besides just looking at the numbers given by the modeling output it is always a good idea to also look at some diagnostics plots. The residuals $r&lt;em&gt;i$ corresponding to the difference of the observed values $y&lt;/em&gt;i$ minus the fitted values $\hat{y}_i$ are useful approximations of the unobservable error terms. The plot below shows four diagrams which are helpful in checking the appropriatness of the chosen linear model.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;opar &amp;lt;- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
-plot(fm1, las = 1, )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2014-11-04-MultipleRegressionInR/figure/unnamed-chunk-7.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot;&gt; &lt;/p&gt;
-
-&lt;p&gt;The top left diagram shows a plot of the residuals versus the fitted values. It is also known as the &lt;code&gt;Tukey-Anscombe&lt;/code&gt; plot. Ideally there should be no relationship between the two quantities and the red line should ideally be horizontal. For our example data-set we can see that there is no obvious pattern between residuals and fitted values. The top right diagram is a so-called &lt;code&gt;QQ-plot&lt;/code&gt; which draws empirically observed quantiles of the residuals versus theoretically expected quantiles, assuming a normal distribution for the error term. In an ideal situation these are all on a line with slope $= 1$. The diagrams in the bottom row are the &lt;code&gt;scale-location&lt;/code&gt; plot testing for equal variance of the residuals and the &lt;code&gt;residuals vs leverage&lt;/code&gt; plot.&lt;/p&gt;
-
-&lt;h3&gt;A refined model&lt;/h3&gt;
-
-&lt;p&gt;When looking at the summary result of the first model fit &lt;code&gt;fm1&lt;/code&gt;, we can see that based on the t-Test statistic and its accompanying p-value, the variable &lt;code&gt;complaints&lt;/code&gt; stands out from the other variables. Hence we can refine our model and check a smaller model which uses only &lt;code&gt;complaints&lt;/code&gt; as a predictor for the response.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;summary(fm2 &amp;lt;- lm(rating ~ complaints, data = attitude))
-
-## 
-## Call:
-## lm(formula = rating ~ complaints, data = attitude)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -12.880  -5.990   0.178   6.298   9.629 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  14.3763     6.6200    2.17    0.039 *  
-## complaints    0.7546     0.0975    7.74    2e-08 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 6.99 on 28 degrees of freedom
-## Multiple R-squared:  0.681,  Adjusted R-squared:  0.67 
-## F-statistic: 59.9 on 1 and 28 DF,  p-value: 1.99e-08
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;A More Formal Introduction&lt;/h2&gt;
-
-&lt;p&gt;Multiple linear regression is defined by the following quote from @BM2014. &lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Given a single response variable: up to some random errors it is a linear function
-of several predictors (or covariables). The linear function involves unknown 
-parameters. The goal is to estimate these
-parameters, to study their relevance and to estimate the error variance.  &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;What the above quote means is that for a set of objects or a set of individuals, we have observed or measured some quantities which are termed &lt;code&gt;response variable&lt;/code&gt; or &lt;code&gt;y-values&lt;/code&gt; or &lt;code&gt;dependent variable&lt;/code&gt;. As an example in a clinical study, we have measured blood pressure or cholesterol levels for a given set of patients. The response variables can only be observed or measured up to some random and non-systematic errors. &lt;/p&gt;
-
-&lt;p&gt;In addition to the response variable, we have for the same set of objects or individuals, some more characteristics that describe or classify the given objects or individuals. For our patients in the above example that might be height and weight or some diatary quantities. These quantities are termed &lt;code&gt;predictors&lt;/code&gt; or &lt;code&gt;covariables&lt;/code&gt; or &lt;code&gt;independent variables&lt;/code&gt; and are assumed to be known exactly without any errors.&lt;/p&gt;
-
-&lt;p&gt;The goal of multiple linear regression is to relate the predictors to a response variable using the mathematical tool of linear functions. In what follows is a more mathematical description of what was described so far.&lt;/p&gt;
-
-&lt;h3&gt;Notation&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\mathbf{y} = {y_i;\ i=1,...,n }$ : vector of $n$ observations&lt;/li&gt;
-&lt;li&gt;$\mathbf{x}^{(j)} = {x_{i,j};\ i=1, ..., n}$: vector of $j^{th}$ predictor (covariable) ($j = 1, ..., p$)&lt;/li&gt;
-&lt;li&gt;$\mathbf{x}&lt;em&gt;i = {x&lt;/em&gt;{i,j};\  j = 1, ..., p}$: vector of the $i^{th}$ observation ($i = 1, ..., n$)&lt;/li&gt;
-&lt;li&gt;$\mathbf{\beta} = {\beta_j;\ j = 1, ..., p}$: vector of unknown parameters&lt;/li&gt;
-&lt;li&gt;$\mathbf{\epsilon} = {\epsilon_i;\ i = 1, ..., n }$: vector of unknown random errors&lt;/li&gt;
-&lt;li&gt;$n$ is the sample size, $p$ is the number of parameters&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Model in vector form&lt;/h3&gt;
-
-&lt;p&gt;$$y&lt;em&gt;i = \mathbf{x}&lt;/em&gt;i^T \mathbf{\beta} + \epsilon_i \text{ with } (i = 1, ..., n)$$&lt;/p&gt;
-
-&lt;p&gt;Usually it is assumed that $\epsilon&lt;em&gt;1, ..., \epsilon&lt;/em&gt;n$ are idependent and identically distributed (iid) with $\mathbb{E}[\epsilon&lt;em&gt;i] = 0$ and $Var(\epsilon&lt;/em&gt;i) = \sigma^2$&lt;/p&gt;
-
-&lt;h3&gt;Model in matrix form&lt;/h3&gt;
-
-&lt;p&gt;$$\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}$$&lt;/p&gt;
-
-&lt;p&gt;where $\mathbf{X}$ is a matrix with $n$ rows $\mathbf{x}_i^T$ and $p$ columns $\mathbf{x}^{(j)}$. It is assumed that $n&amp;gt;p$ and that matrix $\mathbf{X}$ has full rank $p$, i.e. all $p$ vectors $\mathbf{x}^{(1)}, ..., \mathbf{x}^{(p)}$ are linearly independent. &lt;/p&gt;
-
-&lt;h3&gt;Goals for linear regression analysis&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Good fit&lt;/strong&gt;. Fitting a (hyper-) plane over the predictor variables to explain response variables such that errors are &amp;quot;small&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Good parameter estimates&lt;/strong&gt;. Parameter estimates should allow for a description of the change in the response variables when predictor variables change&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Good predictions&lt;/strong&gt;. It is useful to be able to predict new responses as a function of predictor variables&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Uncertainties and significance for above three&lt;/strong&gt;. Confidence intervalls and statistical tests are useful tools for this goal&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Development of a good model&lt;/strong&gt;. Model refinement through some iterative process&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Parameter Estimation - Least Squares&lt;/h2&gt;
-
-&lt;p&gt;Given the linear model $\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\epsilon}$, we are looking for good estimates $\hat{\mathbf{\beta}}$  for the unknown parameter vector $\mathbf{\beta}$. One possibility of finding such estimates $\hat{\mathbf{\beta}}$ is through the method of &lt;strong&gt;least squares&lt;/strong&gt; which aims at finding  $\hat{\mathbf{\beta}}$ such that the errors are as small as possible. &lt;/p&gt;
-
-&lt;p&gt;More formally, the least squares estimator is defined as &lt;/p&gt;
-
-&lt;p&gt;$$\hat{\mathbf{\beta}} = \text{argmin}_{\beta}\lVert\mathbf{y} - \mathbf{X}\mathbf{\beta}\rVert^2$$&lt;/p&gt;
-
-&lt;p&gt;where $\lVert.\rVert$ is defined as the Euclidean norm on the $n$ dimensional space $\mathbf{R}^n$. The $\text{argmin}_\beta$ operator finds that representative of $\beta$ that minimizes the expression $\lVert\mathbf{y} - \mathbf{X}\mathbf{\beta}\rVert^2$. Assuming $\mathbf{X}$ has full column rank $p$, the minimum of the above norm can be computed explicitly. Taking the derivative of the norm with respect to $\mathbf{\beta}$ ($p$ dimensional gradient vector) inserting $\hat{\mathbf{\beta}}$ for $\mathbf{\beta}$ and setting the derivative to zero yields &lt;/p&gt;
-
-&lt;p&gt;$$ (-2)\mathbf{X}^T(\mathbf{y} - \mathbf{X}\hat{\mathbf{\beta}}) = \mathbf{0}$$&lt;/p&gt;
-
-&lt;p&gt;This can be transformed into the following &lt;strong&gt;normal equation&lt;/strong&gt; &lt;/p&gt;
-
-&lt;p&gt;$$\mathbf{X}^T\mathbf{X}\hat{\mathbf{\beta}} = \mathbf{X}^T\mathbf{y}$$&lt;/p&gt;
-
-&lt;p&gt;Although, the normal equation can explicitly be solved for the unknown $\hat{\mathbf{\beta}}$ resulting in &lt;/p&gt;
-
-&lt;p&gt;$$\hat{\mathbf{\beta}} =  \left(\mathbf{X}^T\mathbf{X}\right)^{-1}\mathbf{X}^T\mathbf{y} \text{ ,}$$ &lt;/p&gt;
-
-&lt;p&gt;this formula is only useful for theoretical purposes. For numerical computations, it is much more stable to use the &lt;strong&gt;QR&lt;/strong&gt; decomposition instead of inverting $\left(\mathbf{X}^T\mathbf{X}\right)$. &lt;/p&gt;
-
-&lt;p&gt;Using the residuals $r&lt;em&gt;i = y&lt;/em&gt;i - \mathbf{x}&lt;em&gt;i^T\hat{\mathbf{\beta}}$ as estimates for the errors $\epsilon&lt;/em&gt;i$ a plausible estimator for $\sigma^2$ is &lt;/p&gt;
-
-&lt;p&gt;$$\hat{\sigma}^2 = \frac{1}{n-p}\sum&lt;em&gt;{i=1}^n r&lt;/em&gt;i^2$$&lt;/p&gt;
-
-&lt;p&gt;The unusual factor $\frac{1}{n-p}$ leads to $\mathbf{E}\left[\hat{\sigma}^2\right] = \sigma^2$ which means the estimator is unbiased.&lt;/p&gt;
-
-&lt;h1&gt;References&lt;/h1&gt;
+&lt;p&gt;The description of the multiple linear regression analysis is based on a course on Computational Statistics taught by Martin Mächler and Peter Bühlmann at ETH Zurich. The &lt;a href=&quot;http://stat.ethz.ch/education/semesters/ss2014/CompStat&quot;&gt;course notes&lt;/a&gt; contain more topics than just multiple linear regression and are certainly worth while having a look at. I want to thank both authors for this course and for sharing their course notes online.&lt;/p&gt;
 </content>
  </entry>
  
