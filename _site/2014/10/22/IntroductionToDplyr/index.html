@@ -1,0 +1,19 @@
+<h2>Before dplyr</h2>
+
+<p>The R-package <code>dplyr</code> represents an important milestone in the history of R. Before <code>dplyr</code> existed, data manipulation was not considered to be a strong point of the R system. I even remember very vaguely that even John Chambers was advocating in one of his talks many years ago, that data preparation is better done by some scripting language, like python or perl.</p>
+
+<h2>What is it all about</h2>
+
+<p><code>dplyr</code> can be understood as a language of data manipulation. The language consists only of a small number of verbs each designed to perform a well defined task. Each of the verbs is implemented in an R function. Data manipulation processes can be constructed by chaining together sequences of verbs to a pipeline.</p>
+
+<h2>Getting started</h2>
+
+<p><a href="http://charlotte-ngs.github.io/dplyrIntro">Introductory slides</a> show the basic usage of <code>dplyr</code> using Andersons Iris data set.</p>
+
+<p>The <code>dplyr</code> package is available through CRAN, hence <code>dplyr</code> can be installed via</p>
+<div class="highlight"><pre><code class="r language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The introductory vignette to <code>dplyr</code> available through</p>
+<div class="highlight"><pre><code class="r language-r" data-lang="r">browseVignettes<span class="p">(</span>package <span class="o">=</span> <span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>demonstrates the application of <code>dplyr</code> to the New York City airport flights dataset.</p>

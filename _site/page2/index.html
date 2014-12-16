@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Charlotte-Ngs &middot; The Project Platform
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <div class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Charlotte-Ngs</a>
+          <small>The Project Platform</small>
+        </h3>
+      </div>
+
+      <div class="posts">
+  
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/2014/10/27/UpdateYosemite/">
+        Update Mac Os X to Yosemite
+      </a>
+    </h1>
+
+    <time datetime="2014-10-27T00:00:00+01:00" class="post-date">27 Oct 2014</time>
+
+    <h2>Summary</h2>
+
+<p>All those who want to stay on the safe side and hate to work around issues and new features, are best advised to wait with an upgrade to Yosemite. Also for production systems, an upgrade is probably still a bit early. Unlike with the previous upgrade to Mac Os X 10.9, no real performance boost is perceived when upgading to <code>Yosemite</code>. Although one has to admit that all the points mentioned here against the upgrade are nowhere near the nightmare of an upgrade from Windows 7 to 8. </p>
+
+<h2>Prerequisite</h2>
+
+<p>Before one upgrades a whole operating system, a complete backup of user data is an absolute must. Mac Os X has a backup utility called TimeMachine which comes for free with the system. All one has to do is connect an external hard-drive and start a backup using Time Machine by clicking on the following icon.</p>
+
+<p><img src="img/2014-10-27-UpdateYosemite/TimeMachine.png" alt="Time Machine"></p>
+
+<h2>Download</h2>
+
+<p>Last weekend I decided to upgrade Mac Os X on my Mac Book to version 10.10 aka <code>Yosemite</code>. The upgrade process is started from the AppStore. When you open the AppStore there is a big banner with the Yosemite Logo and a small Update button. Whenever you click on that button the download starts. </p>
+
+<p><img src="img/2014-10-27-UpdateYosemite/AppStoreYosemite.png" alt="Yosemite Logo"></p>
+
+<p>It took more than three hours to download which is most likely caused by my very slow connection to the internet at home. In total, the upgrade to Yosemite is worth 5.16 GB of data. </p>
+
+<h2>Installation</h2>
+
+<p>Once the download was completed the installation of the upgrade can be started from the Download folder. I have not followed the installation closely, but it took quite a long time and several restarts were required. The whole installation did not require any intervention from the user side. In case somebody is interested in more details, one cat press Command-L which is supposed to show more details about the progress of the installation. The timings shown during the installation were not very accurate. For about half an hour the installation screen was showing the message <code>2 minutes left ...</code>. It seams that the upgrade utility is copying parts of the user data or installed software to a secure place and that can take a lot of time depending on how much data has to be copied.</p>
+
+<h2>Aftermath</h2>
+
+<p>The whole upgrade process went very smoothly. The default desktop background changed and the dock looks different but appart from that no obvious changes. When maximizing a window using the green dot in the top-left corner, the window is shown in a full-screen mode. This full-screen mode can be terminated by pointing the cursor to the top border of the screen. </p>
+
+<p><img src="img/2014-10-27-UpdateYosemite/RedYellowGreenDots.png" alt="RedYellowGreenDots"></p>
+
+<h3>Path Issue</h3>
+
+<p>In a <a href="http://tex.stackexchange.com/questions/208181/why-did-my-tex-related-gui-program-stop-working-in-mac-os-x-yosemite">post on tex.stackexchange.com</a>, Adam Maxwell mentioned that GUI programs using TEX tools like <code>pdflatex</code> stopped working after upgrading to Yosemite. In the background section of the post the author explains that GUI programs do no longer inherit variables from shell init files like .bash_profile, .bashrc or others.</p>
+
+<p>For RStudio this meant that when creating a new Sweave document, RStudio would put up the message that it cannot find any TeX installation.</p>
+
+<p><img src="img/2014-10-27-UpdateYosemite/NoTeXInstallationRStudio.png" alt="No TeX Installation in RStudio"></p>
+
+<p>When trying to compile, the unsurprising error message appears in the Compile PDF console.</p>
+
+<p><img src="img/2014-10-27-UpdateYosemite/PdflatexErrorMessage.png" alt="Pdflatex Error Message"></p>
+
+<h3>Fix for RStudio</h3>
+
+<p>Shortly after the post by Adam Maxwell there were posts appearing on <a href="http://www.r-bloggers.com/r-and-rstudio-incompatibility-with-yosemite-mac-os-x-10-10/?utm_source=feedburner&amp;utm_medium=email&amp;utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29">Rbloggers</a> and the <a href="https://support.rstudio.com/hc/en-us/articles/203815576-RStudio-PATH-problems-with-OS-X-Yosemite">RStudio web-site</a> announcing that the latest version (Version 0.98.1083) of RStudio would fix the path problem. After installing that latest version, no more messages of missing TeX installations and compiling Sweave documents worked again. </p>
+
+  </article>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page3">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/">Newer</a>
+    
+  
+</div>
+
+
+      <div class="footer">
+        <p>
+          &copy; 2014. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
