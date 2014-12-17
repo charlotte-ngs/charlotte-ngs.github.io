@@ -16,7 +16,7 @@ All those who want to stay on the safe side and hate to work around issues and n
 ## Prerequisite
 Before one upgrades a whole operating system, a complete backup of user data is an absolute must. Mac Os X has a backup utility called TimeMachine which comes for free with the system. All one has to do is connect an external hard-drive and start a backup using Time Machine by clicking on the following icon.
  
-![Time Machine](img/2014-10-27-UpdateYosemite/TimeMachine.png)
+![Time Machine](http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/TimeMachine.png)
  
 ## Download
 Last weekend I decided to upgrade Mac Os X on my Mac Book to version 10.10 aka `Yosemite`. The upgrade process is started from the AppStore. When you open the AppStore there is a big banner with the Yosemite Logo and a small Update button. Whenever you click on that button the download starts. 
