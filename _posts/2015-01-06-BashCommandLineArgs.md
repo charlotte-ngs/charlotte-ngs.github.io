@@ -10,7 +10,7 @@ output:
 
 
 ## The Ugly Past
-Until recently when I wanted to pass command line arguments to a bash script, I included some ugly if statements checking the number of arguments pass and assigning the arguments in a fixed order. Every bash script had at the beginning something that looked as follows
+Until recently when I wanted to pass command line arguments to a bash script, I included some ugly `if` statements checking the number of command line arguments passed and assigning those arguments in a fixed order. Every bash script had at the beginning something that looked as follows
 
 ```
 ...
@@ -35,18 +35,18 @@ fi
 ...
 ```
 
-Apart from being not very good coding style it is also extremely error prone, because the what values from the command line are assigned to the internal variables is entirely dependent on the order of the command line arguments. Furthermore all command line arguments but the last are absolutely mandatory.
+Apart from being not very good coding style it is also extremely error prone, because of the way how values from the command line are assigned to the internal variables is entirely dependent on the order of the command line arguments. Furthermore all command line arguments but the last are absolutely mandatory.
 
-Hence there is a need for an improved solution to the problem of parsing commandline arguments in a shell script.
+Hence there is a big need for improvement in how command line arguments are parsed in bash scripts.
 
 
 ## The Bright New World with bash getopts
-Searching the web for a little while quickly showed two possible solutions. 
+Searching the web showed two possible solutions. 
 
 1. `getopt` which seams to be a `C` library
 2. `getopts` which is a bash builtin function
 
-Without comparing the two options and without any argument, I found the second option to be easier. In what follows I am using an example script shown at http://tuxtweaks.com/2014/05/bash-getopts for a script I am using to start an R-script.
+Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using an example script shown at http://tuxtweaks.com/2014/05/bash-getopts for a script that is used to start an R-script to retrieve data from a database and to do some plots.
 
 
 ## Own Example
