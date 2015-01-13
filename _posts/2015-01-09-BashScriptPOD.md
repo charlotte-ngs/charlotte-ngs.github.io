@@ -27,13 +27,14 @@ In Literate Programming the software program is given by an explanation of the a
 ### Tools implementing Literate Programming
 The following table shows some of the tools that implement Literate Programming.
 
-Tool     | Link                                            | Description
----------|-------------------------------------------------|------------
-NoWeb    | https://www.cs.tufts.edu/~nr/noweb/             | Implementation of original approach  
-Sweave   | http://www.stat.uni-muenchen.de/~leisch/Sweave  | R/S-version of noweb
-Doxygen  | http://www.doxygen.org                          | CplusPlus, Fortran, Java code documenter
-perldoc  | http://www.perl.com                             | Perl type of manpages
-...      | ...                                             | ...
+| Tool     | Link                                            | Description                         |
+|----------|-------------------------------------------------|-------------------------------------|
+| NoWeb    | https://www.cs.tufts.edu/~nr/noweb/             | Implementation of original approach | 
+| Sweave   | http://www.stat.uni-muenchen.de/~leisch/Sweave  | R/S-version of noweb                |
+| Doxygen  | http://www.doxygen.org                          | CplusPlus, Fortran, Java documenter |
+| perldoc  | http://www.perl.com                             | Perl type of manpages               |
+| ...      | ...                                             | ...                                 |
+
 
 ### Porting ideas of Literate Programming into a bash script
 While it is not possible to follow all premises of Literate Programming when documenting bash scripts, we can implement an improved strategy compared to the man-pages approach that helps avoiding the divergence dilemma. 
