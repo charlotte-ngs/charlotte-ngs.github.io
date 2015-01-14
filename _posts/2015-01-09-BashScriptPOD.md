@@ -100,9 +100,11 @@ while getopts :f:t:d: FLAG; do
 	  ;;
 	f) # set option "f"
 	  EXPERTNAMESFILE=$OPTARG
+	  [ -f "${EXPERTNAMESFILE}" ] || usage "Expert name file: ${EXPERTNAMESFILE} NOT FOUND"
 	  ;;
 	d) # set option "d"
 	  DATESFILE=$OPTARG
+	  [ -f "${DATESFILE}" ] || usage "Dates period file: ${DATESFILE} NOT FOUND"
 	  ;;
 	*) # invalid command line arguments
 	  usage "Invalid command line argument $OPTARG"
@@ -159,11 +161,12 @@ echo end of job
 =head1 DESCRIPTION
 
 The above call generates LBE plots for the trait specified 
-after the -t option.
+after option -t.
 
 =head2 Requirements
 
-When 
+Files specified after options -f and -d must exist, otherwise 
+a usage message will be shown. 
 
 
 =head1 LICENSE
@@ -175,7 +178,46 @@ Artistic License 2.0 http://opensource.org/licenses/artistic-license-2.0
 
 Peter von Rohr <peter.vonrohr@qualitasag.ch>
 
+
 =cut
 ```
 
-Once the source code and the script are saved in a file, we can use `perldoc` with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in `POD` format, we can use all available converters of POD. 
+Once the source code and the script are saved in a file, we can use `perldoc` with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in `POD` format, we can use all available converters of POD such as `pod2html`, `pod2man` or `pod2text`. The output to running `perldoc` on the above script looks as follows.
+
+```
+ERZEUGEPLOTSV2.SH(1)  User Contributed Perl Documentation ERZEUGEPLOTSV2.SH(1)
+
+
+
+NAME
+          erzeugePlotsV2.sh - Shell script generating LBE Plots
+
+SYNOPSIS
+          erzeugePlotsV2.sh -t <trait_name>
+
+             where: <trait_name> sets the name of the trait
+
+          Recognized optional command line arguments
+             -f <string>  -- Set name of input file with expert names
+             -d <string>  -- Set name of input file with dates
+
+DESCRIPTION
+       The above call generates LBE plots for the trait specified after option
+       -t.
+
+   Requirements
+       Files specified after options -f and -d must exist, otherwise a usage
+       message will be shown.
+
+LICENSE
+       Artistic License 2.0
+       http://opensource.org/licenses/artistic-license-2.0
+
+AUTHOR
+       Peter von Rohr <peter.vonrohr@qualitasag.ch>
+
+
+
+perl v5.14.4                      2015-01-13              ERZEUGEPLOTSV2.SH(1)
+
+```
