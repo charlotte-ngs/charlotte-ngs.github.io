@@ -4,7 +4,7 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2015-01-13T13:53:36+01:00</updated>
+ <updated>2015-01-14T07:23:37+01:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
@@ -19,7 +19,7 @@
    <id>http://charlotte-ngs.github.io/2015/01/09/BashScriptPOD</id>
    <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;Summary&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;POD&lt;/code&gt; stands for &lt;a href=&quot;http://en.wikipedia.org/wiki/Plain_Old_Documentation&quot;&gt;plain old documentation&lt;/a&gt; which is a simple markup format definition. Documentation on the scripting language &lt;code&gt;perl&lt;/code&gt; is written in POD. The POD viewer that comes with &lt;a href=&quot;http://www.perl.org&quot;&gt;perl&lt;/a&gt; is called &lt;a href=&quot;http://perldoc.perl.org&quot;&gt;&lt;code&gt;perldoc&lt;/code&gt;&lt;/a&gt;, hence any document in POD format can be viewed using perldoc which shows it as a man-page. In what follows, it is shown how documentation in POD format can be included in a bash script and how perldoc is used to show the script documentation as a man page.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;POD&lt;/code&gt; stands for &lt;a href=&quot;http://en.wikipedia.org/wiki/Plain_Old_Documentation&quot;&gt;plain old documentation&lt;/a&gt; which is a simple markup format definition. Documentation on the scripting language &lt;a href=&quot;http://www.perl.org&quot;&gt;&lt;code&gt;perl&lt;/code&gt;&lt;/a&gt; is written in POD. The POD viewer that comes with perl is called &lt;a href=&quot;http://perldoc.perl.org&quot;&gt;&lt;code&gt;perldoc&lt;/code&gt;&lt;/a&gt;, hence any document in POD format can be viewed using perldoc which shows it as a man-page. In what follows, it is shown how documentation in POD format can be included in a bash script and how perldoc is used to show the script documentation as a man-page.&lt;/p&gt;
 
 &lt;h2 id=&quot;toc_1&quot;&gt;Divergence Dilemma&lt;/h2&gt;
 
@@ -27,7 +27,7 @@
 
 &lt;h3 id=&quot;toc_2&quot;&gt;How can this happen?&lt;/h3&gt;
 
-&lt;p&gt;Typically source code and documentation are not written in parallel but sequentially, first the source code and after that some documentation is added. Whenever bugs in the source code must be fixed or additional features must be added, very often the documentation is not updated. Hence the documentation is no longer describing the current version of the source code, but still reflects the initial version of the software program. &lt;/p&gt;
+&lt;p&gt;Typically source code and documentation are not written in parallel but sequentially. First the source code is developed and later some documentation is added. Whenever bugs in the source code must be fixed or additional features are added, very often the documentation is not updated. Hence the documentation is no longer describing the current version of the source code, but still reflects the initial version of the software program. &lt;/p&gt;
 
 &lt;h2 id=&quot;toc_3&quot;&gt;How To Fight The Divergence Dilemma - Literate Programming&lt;/h2&gt;
 
@@ -136,9 +136,11 @@ while getopts :f:t:d: FLAG; do
       ;;
     f) # set option &amp;quot;f&amp;quot;
       EXPERTNAMESFILE=$OPTARG
+      [ -f &amp;quot;${EXPERTNAMESFILE}&amp;quot; ] || usage &amp;quot;Expert name file: ${EXPERTNAMESFILE} NOT FOUND&amp;quot;
       ;;
     d) # set option &amp;quot;d&amp;quot;
       DATESFILE=$OPTARG
+      [ -f &amp;quot;${DATESFILE}&amp;quot; ] || usage &amp;quot;Dates period file: ${DATESFILE} NOT FOUND&amp;quot;
       ;;
     *) # invalid command line arguments
       usage &amp;quot;Invalid command line argument $OPTARG&amp;quot;
@@ -195,11 +197,12 @@ echo end of job
 =head1 DESCRIPTION
 
 The above call generates LBE plots for the trait specified 
-after the -t option.
+after option -t.
 
 =head2 Requirements
 
-When 
+Files specified after options -f and -d must exist, otherwise 
+a usage message will be shown. 
 
 
 =head1 LICENSE
@@ -211,10 +214,45 @@ Artistic License 2.0 http://opensource.org/licenses/artistic-license-2.0
 
 Peter von Rohr &amp;lt;peter.vonrohr@qualitasag.ch&amp;gt;
 
+
 =cut
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Once the source code and the script are saved in a file, we can use &lt;code&gt;perldoc&lt;/code&gt; with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in &lt;code&gt;POD&lt;/code&gt; format, we can use all available converters of POD. &lt;/p&gt;
-</content>
+&lt;p&gt;Once the source code and the script are saved in a file, we can use &lt;code&gt;perldoc&lt;/code&gt; with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in &lt;code&gt;POD&lt;/code&gt; format, we can use all available converters of POD such as &lt;code&gt;pod2html&lt;/code&gt;, &lt;code&gt;pod2man&lt;/code&gt; or &lt;code&gt;pod2text&lt;/code&gt;. The output of running &lt;code&gt;perldoc&lt;/code&gt; on the above script looks as follows.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;ERZEUGEPLOTSV2.SH(1)  User Contributed Perl Documentation ERZEUGEPLOTSV2.SH(1)
+
+
+
+NAME
+          erzeugePlotsV2.sh - Shell script generating LBE Plots
+
+SYNOPSIS
+          erzeugePlotsV2.sh -t &amp;lt;trait_name&amp;gt;
+
+             where: &amp;lt;trait_name&amp;gt; sets the name of the trait
+
+          Recognized optional command line arguments
+             -f &amp;lt;string&amp;gt;  -- Set name of input file with expert names
+             -d &amp;lt;string&amp;gt;  -- Set name of input file with dates
+
+DESCRIPTION
+       The above call generates LBE plots for the trait specified after option
+       -t.
+
+   Requirements
+       Files specified after options -f and -d must exist, otherwise a usage
+       message will be shown.
+
+LICENSE
+       Artistic License 2.0
+       http://opensource.org/licenses/artistic-license-2.0
+
+AUTHOR
+       Peter von Rohr &amp;lt;peter.vonrohr@qualitasag.ch&amp;gt;
+
+
+
+perl v5.14.4                      2015-01-13              ERZEUGEPLOTSV2.SH(1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -246,7 +284,7 @@ if [ $#1 -gt 1 ];then
 fi
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Apart from being not very good coding style it is also extremely error prone, because of the way how values from the command line are assigned to the internal variables is entirely dependent on the order of the command line arguments. Furthermore all command line arguments but the last are absolutely mandatory.&lt;/p&gt;
+&lt;p&gt;Apart from being not very good coding style it is also extremely error prone. The assignment of command line arguments to script-internal variables depends entirely on the order in which the command line arguments are specified. Switching the order of command line arguments leads to a complete mess in script-variable assignment. Furthermore all command line arguments but the last are absolutely mandatory.&lt;/p&gt;
 
 &lt;p&gt;Hence there is a big need for improvement in how command line arguments are parsed in bash scripts.&lt;/p&gt;
 
@@ -259,7 +297,7 @@ fi
 &lt;li&gt;&lt;code&gt;getopts&lt;/code&gt; which is a bash builtin function&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using an example script shown at &lt;a href=&quot;http://tuxtweaks.com/2014/05/bash-getopts&quot;&gt;http://tuxtweaks.com/2014/05/bash-getopts&lt;/a&gt; for a script that is used to start an R-script to retrieve data from a database and to do some plots.&lt;/p&gt;
+&lt;p&gt;Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using the approach shown in an &lt;a href=&quot;http://tuxtweaks.com/2014/05/bash-getopts&quot;&gt;example script&lt;/a&gt; for parsing command line arguments with getopts in one of my scripts that is used to start an R-script (not shown here) to retrieve data from a database and to do some plots.&lt;/p&gt;
 
 &lt;h2 id=&quot;toc_2&quot;&gt;Own Example&lt;/h2&gt;
 
@@ -365,18 +403,22 @@ fi
 ### Start getopts code ###
 #Parse command line flags
 #If an option should be followed by an argument, it should be followed by a &amp;quot;:&amp;quot;.
-#Notice there is no &amp;quot;:&amp;quot; after &amp;quot;h&amp;quot;. The leading &amp;quot;:&amp;quot; suppresses error messages from
+#The leading &amp;quot;:&amp;quot; suppresses error messages from
 #getopts. This is required to get my unrecognized option code to work.
 while getopts :f:t:d: FLAG; do
   case $FLAG in
-    t) # set option &amp;quot;t&amp;quot;
+    t) # set option &amp;quot;t&amp;quot; specifying the trait
     TRAIT=$OPTARG
       ;;
     f) # set option &amp;quot;f&amp;quot;
       EXPERTNAMESFILE=$OPTARG
+    # EXPERTNAMESFILE must exist
+    [ -f &amp;quot;${EXPERTNAMESFILE}&amp;quot; ] || usage &amp;quot;Expertname file: ${EXPERTNAMESFILE} NOT FOUND&amp;quot;
       ;;
     d) # set option &amp;quot;d&amp;quot;
       DATESFILE=$OPTARG
+    # DATESFILE must exist
+    [ -f &amp;quot;${DATESFILE}&amp;quot; ] || usage &amp;quot;Dates file: ${DATESFILE} NOT FOUND&amp;quot;
       ;;
     *) # invalid command line arguments
       usage &amp;quot;Invalid command line argument $OPTARG&amp;quot;

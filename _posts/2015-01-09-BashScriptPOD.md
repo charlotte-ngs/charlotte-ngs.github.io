@@ -9,14 +9,14 @@ output:
 ---
 
 ## Summary
-`POD` stands for [plain old documentation](http://en.wikipedia.org/wiki/Plain_Old_Documentation) which is a simple markup format definition. Documentation on the scripting language `perl` is written in POD. The POD viewer that comes with [perl](http://www.perl.org) is called [`perldoc`](http://perldoc.perl.org), hence any document in POD format can be viewed using perldoc which shows it as a man-page. In what follows, it is shown how documentation in POD format can be included in a bash script and how perldoc is used to show the script documentation as a man page.
+`POD` stands for [plain old documentation](http://en.wikipedia.org/wiki/Plain_Old_Documentation) which is a simple markup format definition. Documentation on the scripting language [`perl`](http://www.perl.org) is written in POD. The POD viewer that comes with perl is called [`perldoc`](http://perldoc.perl.org), hence any document in POD format can be viewed using perldoc which shows it as a man-page. In what follows, it is shown how documentation in POD format can be included in a bash script and how perldoc is used to show the script documentation as a man-page.
 
 
 ## Divergence Dilemma
 Traditionally bash scripts are documented in separate manual files called `man-pages`. While man-pages are well established among users and developers, they are showing a problem that is termed here the `divergence dilemma`. With the term divergence I am referring to the danger that the source code and the documentation of a certain software program can get out of sync. That means the documentation is not exactly reflecting the features implemented in the source code. 
 
 ### How can this happen?
-Typically source code and documentation are not written in parallel but sequentially, first the source code and after that some documentation is added. Whenever bugs in the source code must be fixed or additional features must be added, very often the documentation is not updated. Hence the documentation is no longer describing the current version of the source code, but still reflects the initial version of the software program. 
+Typically source code and documentation are not written in parallel but sequentially. First the source code is developed and later some documentation is added. Whenever bugs in the source code must be fixed or additional features are added, very often the documentation is not updated. Hence the documentation is no longer describing the current version of the source code, but still reflects the initial version of the software program. 
 
 
 ## How To Fight The Divergence Dilemma - Literate Programming
@@ -182,7 +182,7 @@ Peter von Rohr <peter.vonrohr@qualitasag.ch>
 =cut
 ```
 
-Once the source code and the script are saved in a file, we can use `perldoc` with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in `POD` format, we can use all available converters of POD such as `pod2html`, `pod2man` or `pod2text`. The output to running `perldoc` on the above script looks as follows.
+Once the source code and the script are saved in a file, we can use `perldoc` with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in `POD` format, we can use all available converters of POD such as `pod2html`, `pod2man` or `pod2text`. The output of running `perldoc` on the above script looks as follows.
 
 ```
 ERZEUGEPLOTSV2.SH(1)  User Contributed Perl Documentation ERZEUGEPLOTSV2.SH(1)

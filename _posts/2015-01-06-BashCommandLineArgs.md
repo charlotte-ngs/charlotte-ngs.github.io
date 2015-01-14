@@ -35,7 +35,7 @@ fi
 ...
 ```
 
-Apart from being not very good coding style it is also extremely error prone, because of the way how values from the command line are assigned to the internal variables is entirely dependent on the order of the command line arguments. Furthermore all command line arguments but the last are absolutely mandatory.
+Apart from being not very good coding style it is also extremely error prone. The assignment of command line arguments to script-internal variables depends entirely on the order in which the command line arguments are specified. Switching the order of command line arguments leads to a complete mess in script-variable assignment. Furthermore all command line arguments but the last are absolutely mandatory.
 
 Hence there is a big need for improvement in how command line arguments are parsed in bash scripts.
 
@@ -46,7 +46,7 @@ Searching the web showed two possible solutions.
 1. `getopt` which seams to be a `C` library
 2. `getopts` which is a bash builtin function
 
-Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using an example script shown at http://tuxtweaks.com/2014/05/bash-getopts for a script that is used to start an R-script to retrieve data from a database and to do some plots.
+Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using the approach shown in an [example script](http://tuxtweaks.com/2014/05/bash-getopts) for parsing command line arguments with getopts in one of my scripts that is used to start an R-script (not shown here) to retrieve data from a database and to do some plots.
 
 
 ## Own Example
@@ -109,7 +109,6 @@ The same script using `getopts` for command line parsing is shown below. The `us
 
 The whole command line parsing happens in the `while`-loop. After `getopts` the list of recognized flags is listed. A colon after a flag indicates that the flag requires a value to be specified. The first colon tells `getopts` to not show any error messages. 
 
-
 The `while`-loop calls `getopts` for each command line argument and for each argument it stores the flag in variable `FLAG` and the value behind each flag in variable `OPTARG`. The `FLAG` is then differentiated by the `case` switches where values are assigned into different variables.
 
 ```
@@ -157,18 +156,22 @@ fi
 ### Start getopts code ###
 #Parse command line flags
 #If an option should be followed by an argument, it should be followed by a ":".
-#Notice there is no ":" after "h". The leading ":" suppresses error messages from
+#The leading ":" suppresses error messages from
 #getopts. This is required to get my unrecognized option code to work.
 while getopts :f:t:d: FLAG; do
   case $FLAG in
-    t) # set option "t"
+    t) # set option "t" specifying the trait
     TRAIT=$OPTARG
 	  ;;
 	f) # set option "f"
 	  EXPERTNAMESFILE=$OPTARG
+    # EXPERTNAMESFILE must exist
+    [ -f "${EXPERTNAMESFILE}" ] || usage "Expertname file: ${EXPERTNAMESFILE} NOT FOUND"
 	  ;;
 	d) # set option "d"
 	  DATESFILE=$OPTARG
+    # DATESFILE must exist
+    [ -f "${DATESFILE}" ] || usage "Dates file: ${DATESFILE} NOT FOUND"
 	  ;;
 	*) # invalid command line arguments
 	  usage "Invalid command line argument $OPTARG"
