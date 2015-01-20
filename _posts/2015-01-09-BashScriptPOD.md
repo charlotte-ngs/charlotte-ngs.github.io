@@ -3,6 +3,7 @@ title: "Bash Script Documentation Using POD"
 author: "Peter von Rohr"
 date: "Tuesday, January 09, 2015"
 layout: post
+comments: True
 output: 
   html_document:
      theme: united

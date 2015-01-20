@@ -3,6 +3,7 @@ title: "Introduction To Dplyr"
 author: "Peter von Rohr"
 date: "22 Oct 2014"
 output: html_document
+comments: True
 ---
 
 ## Before dplyr

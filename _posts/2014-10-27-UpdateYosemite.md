@@ -5,6 +5,7 @@ job      : "Charlotte Team"
 date     : "27 Oct 2014"
 status: publish
 published: true
+comments: True
 output: 
   html_document:
      theme: united

@@ -5,6 +5,7 @@ date: "24 Nov 2014"
 layout: post
 status: publish
 published: true
+comments: True
 output: 
   html_document:
      theme: united

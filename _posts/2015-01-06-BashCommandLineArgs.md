@@ -3,6 +3,7 @@ title: "Command Line Options For Bash Scripts"
 author: "Peter von Rohr"
 date: "Tuesday, January 06, 2015"
 layout: post
+comments: True
 output: 
   html_document:
      theme: united
