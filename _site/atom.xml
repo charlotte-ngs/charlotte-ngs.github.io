@@ -4,13 +4,70 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2015-01-14T07:23:37+01:00</updated>
+ <updated>2015-01-20T07:30:02+01:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
    <email>ngs.charlotte@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Fixed Vs Random Effects In Statistical Modelling</title>
+   <link href="http://charlotte-ngs.github.io//2015/01/19/FixedVsRandom/"/>
+   <updated>2015-01-19T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2015/01/19/FixedVsRandom</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;What is the point?&lt;/h2&gt;
+
+&lt;p&gt;Statistical modelling in a frequentist setting usually implies the distinction of the effects included in a certain model into either fixed effects or random effects. Naturally the question arises on how effects are separated into fixed and random, i.e., what are the definitions of fixed and random effects and based on that what are the criteria for assigning the labels fixed or random to any given effect.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;My naïve answer&lt;/h2&gt;
+
+&lt;p&gt;When getting asked the question on what are fixed or random effects, I ususally anser very naïvely in the following way. I learned that whenever a grouping factor is repeatable and all levels of a factor that are present in a population can be observed, the factor is determined to be a fixed effect. Examples are drug dosage in medical trials or gender effects in surveys. For random effects one typically only observes some samples out of a population like in incomplete block designs or split-plot experiments or in some models random effects are completely unobservable such as genetic effects in animal breeding models. &lt;/p&gt;
+
+&lt;p&gt;With respect to parameter estimation, levels of fixed effects are typically estimated using least squares and for random effects some unbiased prediction methods are used. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Surprise, surprise&lt;/h2&gt;
+
+&lt;p&gt;What I did not realize so far and what makes my above answer very naïve is the fact that the statistical community has not agreed on a unified definition on what fixed and random effects are, yet. A nice outline of the conceptual discrepancies of fixed and random effects is given on &lt;a href=&quot;http://andrewgelman.com/2005/01/25/why_i_dont_use/&quot;&gt;Andrew Gelman&amp;#39;s blog&lt;/a&gt; and in a paper that is referenced on the blog post. Here are the five definitions of fixed and random effects given on Gelman&amp;#39;s blog. &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Fixed effects are constant accross individuals and random effects vary. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Effects are fixed if they are interesting in themselves or random if there is interest in the underlying population&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When a sample exhausts the population, the corresponding variable is fixed; when the sample is a small part of the population the corresponding variable is random&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If an effect is assumed to be a realized value of a random variable, it is called a random effect. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fixed effects are estimated using least squares or more generally maximum likelihood. Random effects are estimated using shrinkage (&amp;quot;linear unbiased prediction&amp;quot;). This definition is standard in multilevel modelling and econometrics.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;toc_3&quot;&gt;Definitions are different&lt;/h3&gt;
+
+&lt;p&gt;Gelman also comments on the differences of the above definitions. The first definition stands apart from the other four. Under the second definition,  the assignment of fixed and random effects can change depending on what is of interest in a study. The third definition relates fixed and random effects to a finite population while the fourth makes not reference to any population at all. The second definition allows fixed effects to come from a distribution, as long as that distribution is not of any interest. The fourth and fifth definitions do not use and distribution for inference about fixed effects. The fifth definition has the virue of mathematical precision, but it does not determine when an effect is fixed and when it is random.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Want Some More Definitions ...&lt;/h2&gt;
+
+&lt;p&gt;... here they come. What I have learned from researchers applying statistical models is yet another definition. &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I have this huge data set with these many effects and my statistics program cannot handle this many effects and levels so I have to treat them as random effects. &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;With the advent of big data and with genomics in particular, researchers are often forced to the following &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I have more parameters than observations, hence I cannot treat them as fixed effects, but I am forced to model them as random.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;toc_5&quot;&gt;Summary and Side Note&lt;/h2&gt;
+
+&lt;p&gt;The above shows that none of the definitions clearly determine when a modelling effect should be treated as fixed and when as random. Furthermore a given effect would be assigned to be fixed under certain definitions and random based on other definitions. &lt;/p&gt;
+
+&lt;p&gt;Classification of modelling effects into fixed and random is clearly a frequentist concept. The above outline and the absence of clear-cut and unified definitions gives raise to a lot of critisism of frequentist modelling concepts. &lt;/p&gt;
+
+&lt;p&gt;From a Bayesian perspective, the only relevant distinction is that between observable and non-observable quantities. Inferences on non-observable quantities are always based on posterior distributions of non-observables given observables. The definition of what is observable and not observable seams to leave much less room for interpretation of what we have just seen for the definition of fixed and random effects.  &lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Bash Script Documentation Using POD</title>
