@@ -3,6 +3,7 @@ title: "Fixed Vs Random Effects In Statistical Modelling"
 author: "Peter von Rohr"
 date: "19 Jan 2015"
 layout: post
+comments: True
 output: 
   html_document:
      theme: united
