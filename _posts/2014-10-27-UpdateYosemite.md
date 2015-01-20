@@ -3,6 +3,7 @@ title    : "Update Mac Os X to Yosemite"
 author   : "Peter von Rohr"
 job      : "Charlotte Team"
 date     : "27 Oct 2014"
+layout: post
 status: publish
 published: true
 comments: True
