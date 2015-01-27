@@ -38,4 +38,4 @@ In a companion post, I am trying to summarize the first chapter of GWH2013a usin
 
 
 ## References
-[@GWH2013a] Gondro C, van der Werf J and Hayes B (2013). Genome-Wide Association Studies and Genomic Prediction. Springer http://www.springer.com/life+sciences/systems+biology+and+bioinformatics/book/978-1-62703-446-3
+[@GWH2013a] Gondro C, van der Werf J and Hayes B (2013). Genome-Wide Association Studies and Genomic Prediction. [Springer](http://www.springer.com/life+sciences/systems+biology+and+bioinformatics/book/978-1-62703-446-3)
