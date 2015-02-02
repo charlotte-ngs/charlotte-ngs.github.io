@@ -34,7 +34,7 @@ Fast prototyping means that one can turn ideas very quickly into results. Hence 
 2. Reproducible research
 In principle, the term reproducible research is almost a pleonasm like a round circle, because research should always be reproducible. But the term as it stands here has a more specific meaning. Reproducible research in the context of computational sciences means that algorithms and programs are explained in a natural language which is interspersed with statements from a programming language implementing the described algorithm. This approach is implemented using a technique called "literate programming". 
 
-In a companion post, I am trying to summarize the first chapter of GWH2013a using a literate programming approach. 
+In a [companion post](http://charlotte-ngs.github.io/ImpGWH2013a/notes/ImpGWH2013a.html), I am trying to summarize the first chapter of GWH2013a using a literate programming approach. 
 
 
 ## References
