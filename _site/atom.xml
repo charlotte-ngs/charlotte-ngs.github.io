@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Charlotte-Ngs</title>
+ <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
+ <link href="http://charlotte-ngs.github.io/"/>
+ <updated>2015-02-02T06:26:19+01:00</updated>
+ <id>http://charlotte-ngs.github.io</id>
+ <author>
+   <name>Charlotte-Ngs Team</name>
+   <email>ngs.charlotte@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Suggested Improvements to Genome-Wide Association Studies and Genomic Prediction</title>
+   <link href="http://charlotte-ngs.github.io//2015/01/27/SuggestedImprovementToGWH2013a/"/>
+   <updated>2015-01-27T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2015/01/27/SuggestedImprovementToGWH2013a</id>
+   <content type="html">&lt;p&gt;In Chapter 1 of ([@GWH2013a]; yet another green book) the authors Gondro, Porto-Neto and Lee very nicely outline the potential use of R for Genome Wide Association Studies (GWAS). In eight sections they cover topics from &amp;quot;Reading Data Into R&amp;quot; over &amp;quot;Loops and Vectorization&amp;quot;, &amp;quot;Byte-Code Compilation&amp;quot;, &amp;quot;Memory Management&amp;quot;, &amp;quot;Parallel Computation&amp;quot; to &amp;quot;Running Software from R&amp;quot;which explains how to run stand-alone software programs which are independent of R from inside the R interpreter. This first book chapter starts with an &amp;quot;Introduction&amp;quot; and closes with a &amp;quot;Notes&amp;quot; section.&lt;/p&gt;
+
+&lt;p&gt;The introduction describes some aspects of R and gives pointers to resources which are valuable to users. Readers who are new to R are advised to first read an introductory text on R. Neither the system nor the language are introduced in this first chapter of the book. All the material presented here assumes an intermediate to advanced level of R-programming. &lt;/p&gt;
+
+&lt;p&gt;Personally I believe the authors of this first chapter are missing on some important properties of R which to me and probably also to some other users seam to be much more important. Let me just mention two of these properties which I find very important and which make me use R over any other system.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Fast protoyping
+Fast prototyping means that one can turn ideas very quickly into results. Hence the overhead between having an idea and coming up with a prototype program that produces the first results is very short in R. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reproducible research
+In principle, the term reproducible research is almost a pleonasm like a round circle, because research should always be reproducible. But the term as it stands here has a more specific meaning. Reproducible research in the context of computational sciences means that algorithms and programs are explained in a natural language which is interspersed with statements from a programming language implementing the described algorithm. This approach is implemented using a technique called &amp;quot;literate programming&amp;quot;. &lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In a companion post, I am trying to summarize the first chapter of GWH2013a using a literate programming approach. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;[@GWH2013a] Gondro C, van der Werf J and Hayes B (2013). Genome-Wide Association Studies and Genomic Prediction. &lt;a href=&quot;http://www.springer.com/life+sciences/systems+biology+and+bioinformatics/book/978-1-62703-446-3&quot;&gt;Springer&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Fixed Vs Random Effects In Statistical Modelling</title>
+   <link href="http://charlotte-ngs.github.io//2015/01/19/FixedVsRandom/"/>
+   <updated>2015-01-19T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2015/01/19/FixedVsRandom</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;What is the point?&lt;/h2&gt;
+
+&lt;p&gt;Statistical modelling in a frequentist setting usually implies the distinction of the effects included in a certain model into either fixed effects or random effects. Naturally the question arises on how effects are separated into fixed and random, i.e., what are the definitions of fixed and random effects and based on that what are the criteria for assigning the labels fixed or random to any given effect.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;My naïve answer&lt;/h2&gt;
+
+&lt;p&gt;When getting asked the question on what are fixed or random effects, I ususally anser very naïvely in the following way. I learned that whenever a grouping factor is repeatable and all levels of a factor that are present in a population can be observed, the factor is determined to be a fixed effect. Examples are drug dosage in medical trials or gender effects in surveys. For random effects one typically only observes some samples out of a population like in incomplete block designs or split-plot experiments or in some models random effects are completely unobservable such as genetic effects in animal breeding models. &lt;/p&gt;
+
+&lt;p&gt;With respect to parameter estimation, levels of fixed effects are typically estimated using least squares and for random effects some unbiased prediction methods are used. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Surprise, surprise&lt;/h2&gt;
+
+&lt;p&gt;What I did not realize so far and what makes my above answer very naïve is the fact that the statistical community has not agreed on a unified definition on what fixed and random effects are, yet. A nice outline of the conceptual discrepancies of fixed and random effects is given on &lt;a href=&quot;http://andrewgelman.com/2005/01/25/why_i_dont_use/&quot;&gt;Andrew Gelman&amp;#39;s blog&lt;/a&gt; and in a paper that is referenced on the blog post. Here are the five definitions of fixed and random effects given on Gelman&amp;#39;s blog. &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Fixed effects are constant accross individuals and random effects vary. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Effects are fixed if they are interesting in themselves or random if there is interest in the underlying population&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When a sample exhausts the population, the corresponding variable is fixed; when the sample is a small part of the population the corresponding variable is random&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If an effect is assumed to be a realized value of a random variable, it is called a random effect. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fixed effects are estimated using least squares or more generally maximum likelihood. Random effects are estimated using shrinkage (&amp;quot;linear unbiased prediction&amp;quot;). This definition is standard in multilevel modelling and econometrics.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;toc_3&quot;&gt;Definitions are different&lt;/h3&gt;
+
+&lt;p&gt;Gelman also comments on the differences of the above definitions. The first definition stands apart from the other four. Under the second definition,  the assignment of fixed and random effects can change depending on what is of interest in a study. The third definition relates fixed and random effects to a finite population while the fourth makes not reference to any population at all. The second definition allows fixed effects to come from a distribution, as long as that distribution is not of any interest. The fourth and fifth definitions do not use and distribution for inference about fixed effects. The fifth definition has the virue of mathematical precision, but it does not determine when an effect is fixed and when it is random.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Want Some More Definitions ...&lt;/h2&gt;
+
+&lt;p&gt;... here they come. What I have learned from researchers applying statistical models is yet another definition. &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I have this huge data set with these many effects and my statistics program cannot handle this many effects and levels so I have to treat them as random effects. &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;With the advent of big data and with genomics in particular, researchers are often forced to the following &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I have more parameters than observations, hence I cannot treat them as fixed effects, but I am forced to model them as random.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;toc_5&quot;&gt;Summary and Side Note&lt;/h2&gt;
+
+&lt;p&gt;The above shows that none of the definitions clearly determine when a modelling effect should be treated as fixed and when as random. Furthermore a given effect would be assigned to be fixed under certain definitions and random based on other definitions. &lt;/p&gt;
+
+&lt;p&gt;Classification of modelling effects into fixed and random is clearly a frequentist concept. The above outline and the absence of clear-cut and unified definitions gives raise to a lot of critisism of frequentist modelling concepts. &lt;/p&gt;
+
+&lt;p&gt;From a Bayesian perspective, the only relevant distinction is that between observable and non-observable quantities. Inferences on non-observable quantities are always based on posterior distributions of non-observables given observables. The definition of what is observable and not observable seams to leave much less room for interpretation of what we have just seen for the definition of fixed and random effects.  &lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Bash Script Documentation Using POD</title>
+   <link href="http://charlotte-ngs.github.io//2015/01/09/BashScriptPOD/"/>
+   <updated>2015-01-09T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2015/01/09/BashScriptPOD</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;POD&lt;/code&gt; stands for &lt;a href=&quot;http://en.wikipedia.org/wiki/Plain_Old_Documentation&quot;&gt;plain old documentation&lt;/a&gt; which is a simple markup format definition. Documentation on the scripting language &lt;a href=&quot;http://www.perl.org&quot;&gt;&lt;code&gt;perl&lt;/code&gt;&lt;/a&gt; is written in POD. The POD viewer that comes with perl is called &lt;a href=&quot;http://perldoc.perl.org&quot;&gt;&lt;code&gt;perldoc&lt;/code&gt;&lt;/a&gt;, hence any document in POD format can be viewed using perldoc which shows it as a man-page. In what follows, it is shown how documentation in POD format can be included in a bash script and how perldoc is used to show the script documentation as a man-page.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Divergence Dilemma&lt;/h2&gt;
+
+&lt;p&gt;Traditionally bash scripts are documented in separate manual files called &lt;code&gt;man-pages&lt;/code&gt;. While man-pages are well established among users and developers, they are showing a problem that is termed here the &lt;code&gt;divergence dilemma&lt;/code&gt;. With the term divergence I am referring to the danger that the source code and the documentation of a certain software program can get out of sync. That means the documentation is not exactly reflecting the features implemented in the source code. &lt;/p&gt;
+
+&lt;h3 id=&quot;toc_2&quot;&gt;How can this happen?&lt;/h3&gt;
+
+&lt;p&gt;Typically source code and documentation are not written in parallel but sequentially. First the source code is developed and later some documentation is added. Whenever bugs in the source code must be fixed or additional features are added, very often the documentation is not updated. Hence the documentation is no longer describing the current version of the source code, but still reflects the initial version of the software program. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;How To Fight The Divergence Dilemma - Literate Programming&lt;/h2&gt;
+
+&lt;p&gt;Initiatives such as &lt;a href=&quot;http://en.wikipedia.org/wiki/Literate_programming&quot;&gt;&lt;code&gt;Literate Programming&lt;/code&gt;&lt;/a&gt; started by &lt;a href=&quot;http://en.wikipedia.org/wiki/Donald_Knuth&quot;&gt;Donald Knuth&lt;/a&gt; the author of &lt;code&gt;TeX&lt;/code&gt; which became the basis of &lt;code&gt;LaTeX&lt;/code&gt; address the equivalent of the divergence dilemma in computational research. &lt;/p&gt;
+
+&lt;p&gt;In Literate Programming the software program is given by an explanation of the algorithm or the program logic in a natural language like English, interspersed by macros and snippets of source code. It is important to note here that the documentation of the program and the source code are in the same file which helps avoiding the divergence dilemma. &lt;/p&gt;
+
+&lt;h3 id=&quot;toc_4&quot;&gt;Tools implementing Literate Programming&lt;/h3&gt;
+
+&lt;p&gt;The following table shows some of the tools that implement Literate Programming.&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tool&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;NoWeb&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://www.cs.tufts.edu/%7Enr/noweb/&quot;&gt;https://www.cs.tufts.edu/~nr/noweb/&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Implementation of original approach&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sweave&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://www.stat.uni-muenchen.de/%7Eleisch/Sweave&quot;&gt;http://www.stat.uni-muenchen.de/~leisch/Sweave&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;R/S-version of noweb&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Doxygen&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://www.doxygen.org&quot;&gt;http://www.doxygen.org&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;CplusPlus, Fortran, Java documenter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;perldoc&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://www.perl.com&quot;&gt;http://www.perl.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Perl type of manpages&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;h3 id=&quot;toc_5&quot;&gt;Porting ideas of Literate Programming into a bash script&lt;/h3&gt;
+
+&lt;p&gt;While it is not possible to follow all premises of Literate Programming when documenting bash scripts, we can implement an improved strategy compared to the man-pages approach that helps avoiding the divergence dilemma. &lt;/p&gt;
+
+&lt;p&gt;The approach proposed here is to combine documentation and source code of the same bash script in one file. Documentation and source code are in separate sections of the file and not interspersed as would be required by Literate Programming.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_6&quot;&gt;An Example Script&lt;/h2&gt;
+
+&lt;p&gt;An example bash script together with its documentation is shown below. The two parts source code and documentation would be saved in the same file.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/sh
+###
+###
+###
+###   Purpose:   Create Plots for given Trait
+###   started:   2015/01/05 (pvr)
+###
+### ######################################### ###
+
+#Set Script Name variable
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+
+### # R-program and R-script
+RPROG=`which R`
+RSCRIPT=&amp;#39;R/plotLbeExportGrade.R&amp;#39;
+
+### # functions
+usage () {
+  local l_MSG=$1
+  echo &amp;quot;Usage Error: $l_MSG&amp;quot;
+  echo &amp;quot;Usage: $SCRIPT -t &amp;lt;string&amp;gt;&amp;quot;
+  echo &amp;quot;  where &amp;lt;string&amp;gt; specifies the trait name&amp;quot;
+  echo &amp;quot;Recognized optional command line arguments&amp;quot;
+  echo &amp;quot;-f &amp;lt;string&amp;gt;  -- Set name of input file with expert names&amp;quot;
+  echo &amp;quot;-d &amp;lt;string&amp;gt;  -- Set name of input file with dates&amp;quot;
+  exit 1
+}
+
+
+### # starting main
+echo  job starts
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+
+
+### check number of command line arguments
+NUMARGS=$#
+echo &amp;quot;Number of arguments: $NUMARGS&amp;quot;
+if [ $NUMARGS -eq 0 ]; then
+  usage &amp;#39;No command line arguments specified&amp;#39;
+fi
+
+### Start getopts code ###
+#Parse command line flags
+#If an option should be followed by an argument, it should be followed by a &amp;quot;:&amp;quot;.
+#Notice there is no &amp;quot;:&amp;quot; after &amp;quot;h&amp;quot;. The leading &amp;quot;:&amp;quot; suppresses error messages from
+#getopts. This is required to get my unrecognized option code to work.
+while getopts :f:t:d: FLAG; do
+  case $FLAG in
+    t) # set option &amp;quot;t&amp;quot;
+    TRAIT=$OPTARG
+      ;;
+    f) # set option &amp;quot;f&amp;quot;
+      EXPERTNAMESFILE=$OPTARG
+      [ -f &amp;quot;${EXPERTNAMESFILE}&amp;quot; ] || usage &amp;quot;Expert name file: ${EXPERTNAMESFILE} NOT FOUND&amp;quot;
+      ;;
+    d) # set option &amp;quot;d&amp;quot;
+      DATESFILE=$OPTARG
+      [ -f &amp;quot;${DATESFILE}&amp;quot; ] || usage &amp;quot;Dates period file: ${DATESFILE} NOT FOUND&amp;quot;
+      ;;
+    *) # invalid command line arguments
+      usage &amp;quot;Invalid command line argument $OPTARG&amp;quot;
+      ;;
+  esac
+done  
+
+shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
+
+### # check that TRAIT is not empty
+if [ -z &amp;quot;${TRAIT}&amp;quot; ]
+then
+  usage &amp;#39;Trait name must be specified using option -t &amp;lt;string&amp;gt;&amp;#39;
+fi
+
+### # put together assignment of R-variables required for R-script
+RVARS=&amp;quot;Trait &amp;lt;- &amp;#39;${TRAIT}&amp;#39;&amp;quot;
+if [ ! -z &amp;quot;${EXPERTNAMESFILE}&amp;quot; ]
+then
+  RVARS=&amp;quot;${RVARS};sExpertNamesFile &amp;lt;- &amp;#39;${EXPERTNAMESFILE}&amp;#39;&amp;quot;
+fi
+if [ ! -z &amp;quot;${DATESFILE}&amp;quot; ]
+then
+  RVARS=&amp;quot;${RVARS};sDatesFile &amp;lt;- &amp;#39;${DATESFILE}&amp;#39;&amp;quot;
+fi
+
+### # pass command line arguments and R-script to R program
+(echo $RVARS;cat $RSCRIPT) | $RPROG --vanilla --no-save
+
+
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+
+echo end of job
+
+: &amp;lt;&amp;lt;=cut
+=pod
+
+=head1 NAME
+
+   erzeugePlotsV2.sh - Shell script generating LBE Plots
+
+=head1 SYNOPSIS
+
+   erzeugePlotsV2.sh -t &amp;lt;trait_name&amp;gt;
+
+      where: &amp;lt;trait_name&amp;gt; sets the name of the trait
+
+   Recognized optional command line arguments
+      -f &amp;lt;string&amp;gt;  -- Set name of input file with expert names
+      -d &amp;lt;string&amp;gt;  -- Set name of input file with dates
+
+
+=head1 DESCRIPTION
+
+The above call generates LBE plots for the trait specified 
+after option -t.
+
+=head2 Requirements
+
+Files specified after options -f and -d must exist, otherwise 
+a usage message will be shown. 
+
+
+=head1 LICENSE
+
+Artistic License 2.0 http://opensource.org/licenses/artistic-license-2.0
+
+
+=head1 AUTHOR
+
+Peter von Rohr &amp;lt;peter.vonrohr@qualitasag.ch&amp;gt;
+
+
+=cut
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once the source code and the script are saved in a file, we can use &lt;code&gt;perldoc&lt;/code&gt; with the name of the script file which then shows the documentation as a manpage. Since the documentation is written in &lt;code&gt;POD&lt;/code&gt; format, we can use all available converters of POD such as &lt;code&gt;pod2html&lt;/code&gt;, &lt;code&gt;pod2man&lt;/code&gt; or &lt;code&gt;pod2text&lt;/code&gt;. The output of running &lt;code&gt;perldoc&lt;/code&gt; on the above script looks as follows.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;ERZEUGEPLOTSV2.SH(1)  User Contributed Perl Documentation ERZEUGEPLOTSV2.SH(1)
+
+
+
+NAME
+          erzeugePlotsV2.sh - Shell script generating LBE Plots
+
+SYNOPSIS
+          erzeugePlotsV2.sh -t &amp;lt;trait_name&amp;gt;
+
+             where: &amp;lt;trait_name&amp;gt; sets the name of the trait
+
+          Recognized optional command line arguments
+             -f &amp;lt;string&amp;gt;  -- Set name of input file with expert names
+             -d &amp;lt;string&amp;gt;  -- Set name of input file with dates
+
+DESCRIPTION
+       The above call generates LBE plots for the trait specified after option
+       -t.
+
+   Requirements
+       Files specified after options -f and -d must exist, otherwise a usage
+       message will be shown.
+
+LICENSE
+       Artistic License 2.0
+       http://opensource.org/licenses/artistic-license-2.0
+
+AUTHOR
+       Peter von Rohr &amp;lt;peter.vonrohr@qualitasag.ch&amp;gt;
+
+
+
+perl v5.14.4                      2015-01-13              ERZEUGEPLOTSV2.SH(1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Command Line Options For Bash Scripts</title>
+   <link href="http://charlotte-ngs.github.io//2015/01/06/BashCommandLineArgs/"/>
+   <updated>2015-01-06T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2015/01/06/BashCommandLineArgs</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;The Ugly Past&lt;/h2&gt;
+
+&lt;p&gt;Until recently when I wanted to pass command line arguments to a bash script, I included some ugly &lt;code&gt;if&lt;/code&gt; statements checking the number of command line arguments passed and assigning those arguments in a fixed order. Every bash script had at the beginning something that looked as follows&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;...
+### # functions
+usage () {
+  local l_MSG=$1
+  echo &amp;quot;Usage Error: $l_MSG&amp;quot;
+  echo &amp;quot;Usage: $0 Logfile-stem&amp;quot;
+  exit 1
+}
+
+...
+### # command line args
+if [ $#1 -lt 1 ];then
+  usage &amp;quot;WRONG number of command line arguments&amp;quot;
+fi
+LOGFILESTEM=$1
+
+if [ $#1 -gt 1 ];then
+  SLEEPSEC=$2
+fi
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Apart from being not very good coding style it is also extremely error prone. The assignment of command line arguments to script-internal variables depends entirely on the order in which the command line arguments are specified. Switching the order of command line arguments leads to a complete mess in script-variable assignment. Furthermore all command line arguments but the last are absolutely mandatory.&lt;/p&gt;
+
+&lt;p&gt;Hence there is a big need for improvement in how command line arguments are parsed in bash scripts.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;The Bright New World with bash getopts&lt;/h2&gt;
+
+&lt;p&gt;Searching the web showed two possible solutions. &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;getopt&lt;/code&gt; which seams to be a &lt;code&gt;C&lt;/code&gt; library&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;getopts&lt;/code&gt; which is a bash builtin function&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Without comparing the two options and without any arguments, I found the second option to be easier. In what follows I am using the approach shown in an &lt;a href=&quot;http://tuxtweaks.com/2014/05/bash-getopts&quot;&gt;example script&lt;/a&gt; for parsing command line arguments with getopts in one of my scripts that is used to start an R-script (not shown here) to retrieve data from a database and to do some plots.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Own Example&lt;/h2&gt;
+
+&lt;p&gt;Before using &lt;code&gt;getopts&lt;/code&gt; the script was parsing command line arguments in a very tedious way. &lt;/p&gt;
+
+&lt;h3 id=&quot;toc_3&quot;&gt;The Old Way&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/sh
+###
+###
+###
+###   Purpose:   Create Plots for given Trait
+###   started:   2015/01/05 (pvr)
+###
+### ######################################### ###
+
+RPROG=`which R`
+RSCRIPT=&amp;#39;R/plotLbeExportGrade.R&amp;#39;
+
+### # functions
+usage () {
+  local l_MSG=$1
+  echo &amp;quot;Usage Error: $l_MSG&amp;quot;
+  echo &amp;quot;Usage: $0 TraitName&amp;quot;
+  exit 1
+}
+
+### # starting main
+echo  job starts
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+
+### check number of command line arguments
+if [ $# -lt 1 ]
+then
+  usage &amp;quot;Incorrect number of commandline arguments&amp;quot;
+fi
+
+### # assume trait is first command line argument
+TRAIT=$1
+
+### # more command line parameters
+if [ $# -gt 1 ]
+then
+  EXPERTNAMESFILE=$2
+  (echo &amp;quot;sExpertNamesFile &amp;lt;- &amp;#39;${EXPERTNAMESFILE}&amp;#39;;Trait &amp;lt;- &amp;#39;${TRAIT}&amp;#39;&amp;quot;;cat $RSCRIPT) | $RPROG --vanilla --no-save
+else
+  (echo &amp;quot;Trait &amp;lt;- &amp;#39;${TRAIT}&amp;#39;&amp;quot;;cat $RSCRIPT) | $RPROG --vanilla --no-save
+fi
+
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+
+echo end of job
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;toc_4&quot;&gt;Using getopts&lt;/h3&gt;
+
+&lt;p&gt;The same script using &lt;code&gt;getopts&lt;/code&gt; for command line parsing is shown below. The &lt;code&gt;usage&lt;/code&gt; function was extended to point to the changed format of how to specifiy command line arguments. &lt;/p&gt;
+
+&lt;p&gt;The whole command line parsing happens in the &lt;code&gt;while&lt;/code&gt;-loop. After &lt;code&gt;getopts&lt;/code&gt; the list of recognized flags is listed. A colon after a flag indicates that the flag requires a value to be specified. The first colon tells &lt;code&gt;getopts&lt;/code&gt; to not show any error messages. &lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;while&lt;/code&gt;-loop calls &lt;code&gt;getopts&lt;/code&gt; for each command line argument and for each argument it stores the flag in variable &lt;code&gt;FLAG&lt;/code&gt; and the value behind each flag in variable &lt;code&gt;OPTARG&lt;/code&gt;. The &lt;code&gt;FLAG&lt;/code&gt; is then differentiated by the &lt;code&gt;case&lt;/code&gt; switches where values are assigned into different variables.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/sh
+###
+###
+###
+###   Purpose:   Create Plots for given Trait
+###   started:   2015/01/05 (pvr)
+###
+### ######################################### ###
+
+#Set Script Name variable
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+
+### # R-program and R-script
+RPROG=`which R`
+RSCRIPT=&amp;#39;R/plotLbeExportGrade.R&amp;#39;
+
+### # functions
+usage () {
+  local l_MSG=$1
+  echo &amp;quot;Usage Error: $l_MSG&amp;quot;
+  echo &amp;quot;Usage: $SCRIPT -t &amp;lt;string&amp;gt;&amp;quot;
+  echo &amp;quot;  where &amp;lt;string&amp;gt; specifies the trait name&amp;quot;
+  echo &amp;quot;Recognized optional command line arguments&amp;quot;
+  echo &amp;quot;-f &amp;lt;string&amp;gt;  -- Set name of input file with expert names&amp;quot;
+  echo &amp;quot;-d &amp;lt;string&amp;gt;  -- Set name of input file with dates&amp;quot;
+  exit 1
+}
+
+
+### # starting main
+echo  job starts
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+
+### check number of command line arguments
+NUMARGS=$#
+echo &amp;quot;Number of arguments: $NUMARGS&amp;quot;
+if [ $NUMARGS -eq 0 ]; then
+  usage &amp;#39;No command line arguments specified&amp;#39;
+fi
+
+### Start getopts code ###
+#Parse command line flags
+#If an option should be followed by an argument, it should be followed by a &amp;quot;:&amp;quot;.
+#The leading &amp;quot;:&amp;quot; suppresses error messages from
+#getopts. This is required to get my unrecognized option code to work.
+while getopts :f:t:d: FLAG; do
+  case $FLAG in
+    t) # set option &amp;quot;t&amp;quot; specifying the trait
+    TRAIT=$OPTARG
+      ;;
+    f) # set option &amp;quot;f&amp;quot;
+      EXPERTNAMESFILE=$OPTARG
+    # EXPERTNAMESFILE must exist
+    [ -f &amp;quot;${EXPERTNAMESFILE}&amp;quot; ] || usage &amp;quot;Expertname file: ${EXPERTNAMESFILE} NOT FOUND&amp;quot;
+      ;;
+    d) # set option &amp;quot;d&amp;quot;
+      DATESFILE=$OPTARG
+    # DATESFILE must exist
+    [ -f &amp;quot;${DATESFILE}&amp;quot; ] || usage &amp;quot;Dates file: ${DATESFILE} NOT FOUND&amp;quot;
+      ;;
+    *) # invalid command line arguments
+      usage &amp;quot;Invalid command line argument $OPTARG&amp;quot;
+      ;;
+  esac
+done  
+
+shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
+
+### # check that TRAIT is not empty
+if [ -z &amp;quot;${TRAIT}&amp;quot; ]
+then
+  usage &amp;#39;Trait name must be specified using option -t &amp;lt;string&amp;gt;&amp;#39;
+fi
+
+### # put together assignment of R-variables required for R-script
+RVARS=&amp;quot;Trait &amp;lt;- &amp;#39;${TRAIT}&amp;#39;&amp;quot;
+if [ ! -z &amp;quot;${EXPERTNAMESFILE}&amp;quot; ]
+then
+  RVARS=&amp;quot;${RVARS};sExpertNamesFile &amp;lt;- &amp;#39;${EXPERTNAMESFILE}&amp;#39;&amp;quot;
+fi
+if [ ! -z &amp;quot;${DATESFILE}&amp;quot; ]
+then
+  RVARS=&amp;quot;${RVARS};sDatesFile &amp;lt;- &amp;#39;${DATESFILE}&amp;#39;&amp;quot;
+fi
+
+### # pass command line arguments and R-script to R program
+(echo $RVARS;cat $RSCRIPT) | $RPROG --vanilla --no-save
+
+RIGHT_NOW=$(date +&amp;quot;%x %r %Z&amp;quot;)
+echo $RIGHT_NOW
+echo end of job
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;toc_5&quot;&gt;Example calls&lt;/h3&gt;
+
+&lt;p&gt;Calling the script without any command line arguments shows the usage message. &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;$ ./bash/erzeugePlotsV2.sh
+job starts
+06.01.2015 04:31:46 CET
+Number of arguments: 0
+Usage Error: No command line arguments specified
+Usage: erzeugePlotsV2.sh -t &amp;lt;string&amp;gt;
+  where &amp;lt;string&amp;gt; specifies the trait name
+Recognized optional command line arguments
+-f &amp;lt;string&amp;gt;  -- Set name of input file with expert names
+-d &amp;lt;string&amp;gt;  -- Set name of input file with dates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A call with the minimum number of command line arguments is shown below. &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;./bash/erzeugePlotsV2.sh -t DLC_FO8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Specifying all command line arguments looks as follows&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;./bash/erzeugePlotsV2.sh -t DLC_FO8 -f input/experts.csv -d input/dates.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Multiple Linear Regression In R</title>
+   <link href="http://charlotte-ngs.github.io//2014/11/24/MultipleRegressionInR/"/>
+   <updated>2014-11-24T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/11/24/MultipleRegressionInR</id>
+   <content type="html">&lt;p&gt;At the time I was putting together some slides on an &lt;a href=&quot;http://charlotte-ngs.github.io/RCrashCourse&quot;&gt;introduction to R&lt;/a&gt;, I wanted to integrate something very basic about linear modelling. But very soon I realized that this would be too much material for one series of slides. Hence I decided to put away the material on linear models for a separate post and a new series of slides.&lt;/p&gt;
+
+&lt;p&gt;The introduction to multiple linear regression comes in two versions. First, an example analysis of the Chatterjee–Price Attitude dataset is described in a &lt;a href=&quot;http://charlotte-ngs.github.io/MultLinRegInR/notes/2014-11-04-MultipleRegressionInR.html&quot;&gt;blog post&lt;/a&gt;. Second, the same material is also presented as a &lt;a href=&quot;http://charlotte-ngs.github.io/MultLinRegInR/slides/MultLinRegInR.html&quot;&gt;series of slides&lt;/a&gt; which can freely be used for courses or presentations. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;Disclaimer&lt;/h2&gt;
+
+&lt;p&gt;The description of the multiple linear regression analysis is based on a course on Computational Statistics taught by Martin Mächler and Peter Bühlmann at ETH Zurich. The &lt;a href=&quot;http://stat.ethz.ch/education/semesters/ss2014/CompStat&quot;&gt;course notes&lt;/a&gt; contain more topics than just multiple linear regression and are certainly worth while having a look at. I want to thank both authors for this course and for sharing their course notes online.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Update Mac Os X to Yosemite</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/27/UpdateYosemite/"/>
+   <updated>2014-10-27T00:00:00+01:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/27/UpdateYosemite</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;All those who want to stay on the safe side and hate to work around issues and new features, are best advised to wait with an upgrade to Yosemite. Also for production systems, an upgrade is probably still a bit early. Unlike with the previous upgrade to Mac Os X 10.9, no real performance boost is perceived when upgading to &lt;code&gt;Yosemite&lt;/code&gt;. Although one has to admit that all the points mentioned here against the upgrade are nowhere near the nightmare of an upgrade from Windows 7 to 8. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Prerequisite&lt;/h2&gt;
+
+&lt;p&gt;Before one upgrades a whole operating system, a complete backup of user data is an absolute must. Mac Os X has a backup utility called TimeMachine which comes for free with the system. All one has to do is connect an external hard-drive and start a backup using Time Machine by clicking on the following icon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/TimeMachine.png&quot; alt=&quot;Time Machine&quot;&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Download&lt;/h2&gt;
+
+&lt;p&gt;Last weekend I decided to upgrade Mac Os X on my Mac Book to version 10.10 aka &lt;code&gt;Yosemite&lt;/code&gt;. The upgrade process is started from the AppStore. When you open the AppStore there is a big banner with the Yosemite Logo and a small Update button. Whenever you click on that button the download starts. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/AppStoreYosemite.png&quot; alt=&quot;Yosemite Logo&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;It took more than three hours to download which is most likely caused by my very slow connection to the internet at home. In total, the upgrade to Yosemite is worth 5.16 GB of data. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Once the download was completed the installation of the upgrade can be started from the Download folder. I have not followed the installation closely, but it took quite a long time and several restarts were required. The whole installation did not require any intervention from the user side. In case somebody is interested in more details, one cat press Command-L which is supposed to show more details about the progress of the installation. The timings shown during the installation were not very accurate. For about half an hour the installation screen was showing the message &lt;code&gt;2 minutes left ...&lt;/code&gt;. It seams that the upgrade utility is copying parts of the user data or installed software to a secure place and that can take a lot of time depending on how much data has to be copied.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Aftermath&lt;/h2&gt;
+
+&lt;p&gt;The whole upgrade process went very smoothly. The default desktop background changed and the dock looks different but appart from that no obvious changes. When maximizing a window using the green dot in the top-left corner, the window is shown in a full-screen mode. This full-screen mode can be terminated by pointing the cursor to the top border of the screen. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/RedYellowGreenDots.png&quot; alt=&quot;RedYellowGreenDots&quot;&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;toc_5&quot;&gt;Path Issue&lt;/h3&gt;
+
+&lt;p&gt;In a &lt;a href=&quot;http://tex.stackexchange.com/questions/208181/why-did-my-tex-related-gui-program-stop-working-in-mac-os-x-yosemite&quot;&gt;post on tex.stackexchange.com&lt;/a&gt;, Adam Maxwell mentioned that GUI programs using TEX tools like &lt;code&gt;pdflatex&lt;/code&gt; stopped working after upgrading to Yosemite. In the background section of the post the author explains that GUI programs do no longer inherit variables from shell init files like .bash_profile, .bashrc or others.&lt;/p&gt;
+
+&lt;p&gt;For RStudio this meant that when creating a new Sweave document, RStudio would put up the message that it cannot find any TeX installation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/NoTeXInstallationRStudio.png&quot; alt=&quot;No TeX Installation in RStudio&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;When trying to compile, the unsurprising error message appears in the Compile PDF console.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://charlotte-ngs.github.io/img/2014-10-27-UpdateYosemite/PdflatexErrorMessage.png&quot; alt=&quot;Pdflatex Error Message&quot;&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;toc_6&quot;&gt;Fix for RStudio&lt;/h3&gt;
+
+&lt;p&gt;Shortly after the post by Adam Maxwell there were posts appearing on &lt;a href=&quot;http://www.r-bloggers.com/r-and-rstudio-incompatibility-with-yosemite-mac-os-x-10-10/?utm_source=feedburner&amp;amp;utm_medium=email&amp;amp;utm_campaign=Feed%3A+RBloggers+%28R+bloggers%29&quot;&gt;Rbloggers&lt;/a&gt; and the &lt;a href=&quot;https://support.rstudio.com/hc/en-us/articles/203815576-RStudio-PATH-problems-with-OS-X-Yosemite&quot;&gt;RStudio web-site&lt;/a&gt; announcing that the latest version (Version 0.98.1083) of RStudio would fix the path problem. After installing that latest version, no more messages of missing TeX installations and compiling Sweave documents worked again. &lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introduction To Dplyr</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/22/IntroductionToDplyr/"/>
+   <updated>2014-10-22T00:00:00+02:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/22/IntroductionToDplyr</id>
+   <content type="html">&lt;h2 id=&quot;toc_0&quot;&gt;Before dplyr&lt;/h2&gt;
+
+&lt;p&gt;The R-package &lt;code&gt;dplyr&lt;/code&gt; represents an important milestone in the history of R. Before &lt;code&gt;dplyr&lt;/code&gt; existed, data manipulation was not considered to be a strong point of the R system. I even remember very vaguely that even John Chambers was advocating in one of his talks many years ago, that data preparation is better done by some scripting language, like python or perl.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;What is it all about&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;dplyr&lt;/code&gt; can be understood as a language of data manipulation. The language consists only of a small number of verbs each designed to perform a well defined task. Each of the verbs is implemented in an R function. Data manipulation processes can be constructed by chaining together sequences of verbs to a pipeline.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://charlotte-ngs.github.io/dplyrIntro&quot;&gt;Introductory slides&lt;/a&gt; show the basic usage of &lt;code&gt;dplyr&lt;/code&gt; using Andersons Iris data set.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;dplyr&lt;/code&gt; package is available through CRAN, hence &lt;code&gt;dplyr&lt;/code&gt; can be installed via&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;r language-r&quot; data-lang=&quot;r&quot;&gt;install.packages&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;dplyr&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The introductory vignette to &lt;code&gt;dplyr&lt;/code&gt; available through&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;r language-r&quot; data-lang=&quot;r&quot;&gt;browseVignettes&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;package &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;dplyr&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;demonstrates the application of &lt;code&gt;dplyr&lt;/code&gt; to the New York City airport flights dataset.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introduction to R</title>
+   <link href="http://charlotte-ngs.github.io//2014/10/14/IntroductionToR/"/>
+   <updated>2014-10-14T00:00:00+02:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/10/14/IntroductionToR</id>
+   <content type="html">&lt;p&gt;When working with big data which is certainly the case in the area of
+next generation sequencing (NGS), it is important to have a set of tools 
+or a system that supports the user in managing and analysing the available 
+data. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;The R System&lt;/h2&gt;
+
+&lt;p&gt;In statistical data analysis &lt;a href=&quot;http://www.r-project.org&quot;&gt;R&lt;/a&gt; has become very 
+popular. The philosophy of R is similar to the one of Unix of building a system 
+using small tools. Hence the base of R is relatively small. But that small base 
+can easily be extended by a large number of packages. The Comprehensive R Archive 
+Network &lt;a href=&quot;http://cran.r-project.org/&quot;&gt;CRAN&lt;/a&gt; is the main repository for packages 
+extending the functionality of the R system.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Bioconductor&lt;/h2&gt;
+
+&lt;p&gt;When working with data from Bio- or Life-Sciences, &lt;a href=&quot;http://www.bioconductor.org&quot;&gt;Bioconductor&lt;/a&gt; 
+is a very valuable resource. Bioconductor does not only provide a large set of 
+R packages but it does also offer standardized workflows and example datasets. 
+In general Bioconductor documentation is provided by vignettes following the 
+paradigm of reproducible research.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;Why R&lt;/h2&gt;
+
+&lt;p&gt;Because first of all R is very fast in prototyping and second R is easy to extend 
+either by writing packages in R or by using its interfaces to other languages. &lt;/p&gt;
+
+&lt;p&gt;Dirk Edelbuettel explained why to use R in a &lt;a href=&quot;https://www.youtube.com/watch?v=UZkaZhsOfT4&quot;&gt;Google Tech Talk&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;R Crash Course&lt;/h2&gt;
+
+&lt;p&gt;Learning how to use a system like R is associated with a certain learning curve. 
+Some people pretend that this curve is especially steep when learning how to use R. &lt;/p&gt;
+
+&lt;p&gt;As an introduction, I have put together some slides which I would use to introduce 
+R to an audience without prior knowledge. In case you are interested you can &lt;a href=&quot;http://charlotte-ngs.github.io/RCrashCourse&quot;&gt;read more 
+here ...&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How To Get Started</title>
+   <link href="http://charlotte-ngs.github.io//2014/08/20/how-to-get-started/"/>
+   <updated>2014-08-20T00:00:00+02:00</updated>
+   <id>http://charlotte-ngs.github.io/2014/08/20/how-to-get-started</id>
+   <content type="html">&lt;p&gt;Most Blogs start by a report on how to get started with blogging. This blog should not be any different. Not that it is particularly interesting, but maybe someone else out there has the same difficulties that I had and maybe these lines can help getting over those difficulties a little faster.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_0&quot;&gt;History&lt;/h2&gt;
+
+&lt;p&gt;Before coming here I started a blog using &lt;a href=&quot;http://www.evernote.com&quot;&gt;Evernote&lt;/a&gt; linked to &lt;a href=&quot;http://postach.io&quot;&gt;Postach.io&lt;/a&gt;. This was very convenient, because I use Evernote on a daily basis. When writing a post about programming concepts, I want to follow the paradigm of reproducible research or reproducible programming, i.e., no copy-pasting of code and results. Everything is produced by one single source file. At the time when I got started with my Evernote blog I did not see how to implement the strategy of reproducible programming. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_1&quot;&gt;Goal&lt;/h2&gt;
+
+&lt;p&gt;As mentioned above, the goal for my ideal blogging environment was to write one source file with everything and then have some clever system produce all the output that was desired. I was reading some blog posts about blogging like a hacker &lt;code&gt;reference needed here&lt;/code&gt; and thereby I found using GitHub pages was what I wanted.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_2&quot;&gt;GitHub&lt;/h2&gt;
+
+&lt;p&gt;GitHub offers free hosting of custom web-sites through GitHub pages. All one has to do is &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;create an account on GitHub and &lt;/li&gt;
+&lt;li&gt;within that account create a repository called &lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt; where &lt;code&gt;&amp;lt;username&amp;gt;&lt;/code&gt; is to be replaced by the actual username you chose for the GitHub account. &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;After these two steps, your blog web-site is available at &lt;code&gt;username.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;toc_3&quot;&gt;Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Jekyll is a blog-aware static site generator which means documents in Markdown format are automatically conterted into static HTML pages. Furthermore, running Jekyll on your local machine gives you the possibility to serve every page locally without having to upload anything. &lt;/p&gt;
+
+&lt;h2 id=&quot;toc_4&quot;&gt;Poole&lt;/h2&gt;
+
+&lt;p&gt;Poole provides an example setup for a Jekyll site. It comes with a set of templates, pages, styles and posts. This is very convenient for any beginner, because all one has to do is clone the sources provided by Poole, change the content to its own site and a new blog-site is ready to be served in only a very short time. &lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
