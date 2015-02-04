@@ -24,9 +24,9 @@ references:
 
 In Chapter 1 of ([@GWH2013a]; yet another green book) the authors Gondro, Porto-Neto and Lee very nicely outline the potential use of R for Genome Wide Association Studies (GWAS). In eight sections they cover topics from "Reading Data Into R" over "Loops and Vectorization", "Byte-Code Compilation", "Memory Management", "Parallel Computation" to "Running Software from R"which explains how to run stand-alone software programs which are independent of R from inside the R interpreter. This first book chapter starts with an "Introduction" and closes with a "Notes" section.
 
-The introduction describes some aspects of R and gives pointers to resources which are valuable to users. Readers who are new to R are advised to first read an introductory text on R. Neither the system nor the language are introduced in this first chapter of the book. All the material presented here assumes an intermediate to advanced level of R-programming. 
+The introduction describes some aspects of R and gives pointers to resources which are valuable to users. Readers who are new to R are advised to first read an introductory text on R. Neither the system nor the language are introduced in this first chapter of the book. All the material presented in Chapter 1 of [@GWH2013a] requires an intermediate to advanced level of R-programming. 
 
-Personally I believe the authors of this first chapter are missing on some important properties of R which to me and probably also to some other users seam to be much more important. Let me just mention two of these properties which I find very important and which make me use R over any other system.
+Personally I believe the authors of this first chapter of [@GWH2013a] are missing on some important properties of R which to me and probably also to some other users seam to be very important. Let me just mention two of these properties which make me use R over any other system.
 
 1. Fast protoyping
 Fast prototyping means that one can turn ideas very quickly into results. Hence the overhead between having an idea and coming up with a prototype program that produces the first results is very short in R. 

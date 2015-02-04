@@ -4,7 +4,7 @@
  <title>Charlotte-Ngs</title>
  <link href="http://charlotte-ngs.github.io/atom.xml" rel="self"/>
  <link href="http://charlotte-ngs.github.io/"/>
- <updated>2015-02-03T12:59:04+01:00</updated>
+ <updated>2015-02-03T17:39:25+01:00</updated>
  <id>http://charlotte-ngs.github.io</id>
  <author>
    <name>Charlotte-Ngs Team</name>
@@ -24,7 +24,7 @@
 &lt;li&gt;Good infrastructure and good integration of Literate Programming paradigms. &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Fast prototyping stands for the quick turn-over of ideas into code. That means once you have a dataset and you want to try some ideas or draw some graphics, this can be done very quickly in R. In a &lt;a href=&quot;https://www.youtube.com/watch?v=UZkaZhsOfT4&quot;&gt;Google Tech Talk&lt;/a&gt; Dirk Edelbuettel showed a nice example of what this really means. Got you interested, please read on ...&lt;/p&gt;
+&lt;p&gt;Fast prototyping stands for the quick turn-over of ideas into code. That means once you have a dataset and you want to try some ideas or draw some graphics, this can be done very quickly in R. In a &lt;a href=&quot;https://www.youtube.com/watch?v=UZkaZhsOfT4&quot;&gt;Google Tech Talk&lt;/a&gt; Dirk Edelbuettel showed a nice example of what this really means. Got you interested, please &lt;a href=&quot;http://charlotte-ngs.github.io/WhyR/notes/20150203-WhyR.html&quot;&gt;read on ...&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
