@@ -1,8 +1,9 @@
-# Computation Meets The Cloud
-Peter von Rohr  
-7 May 2015  
-
-
+---
+title: "Computation Meets The Cloud"
+author: "Peter von Rohr"
+date: "7 May 2015"
+output: html_document
+---
 
 This post introduces the potential synergies of computer algebra and cloud computing for data analysis. Recently, there has been a debate on some [blogs](http://www.r-bloggers.com/choosing-r-or-python-for-data-analysis-an-infographic) whether one should choose `R` or `python` for data analysis. Also `Julia` is among the systems that has been advocated by some data analysts. 
 
