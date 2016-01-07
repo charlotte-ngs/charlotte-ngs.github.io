@@ -24,5 +24,8 @@ This post has a closer look of two of the four packages that were used in the ab
 
 The focus of this post is clearly on the very specific task of having some results available in R as a dataframe and wanting to transfer these results into an Excel spreadsheet. Once the results are transfered, some formatting of rows and columns should be applied. We do not look at how well the inverse transfer of reading data from Excel into R works with the mentioned packages. Readers who are interestined in that type of data transfer will certainly find many useful sources by doing the obvious search on the web. 
 
+## Summary
+The above two packages are both great when it comes to transfering data from R into Excel. The first package `xlsx` depends on the R-package `rJava` which is not a problem, at least on Win 7/64. I am still having troubles to get the whole story to fly on my Mac (OS X El Capitan, version 10.11.2).  
+
 If you are still interested to see in who the mentioned packages solve our particular problem, please [read on](http://charlotte-ngs.github.io/RPackageXLSXHowTo/HowToForRPackageXLSX.html) ...
 
