@@ -2,7 +2,11 @@
 title: "Create Excel Spreadsheets Using R"
 author: "Peter von Rohr"
 date: "3 January 2016"
-output: html_document
+layout: post
+comments: True
+output: 
+  html_document:
+     theme: united
 ---
 
 In the era of big data, people are more and more looking beyond the scope of what can be done with MS Excel. __Love__ it or __hate__ it, fact is that most data is still gathered, processed, analyzed and visualized using MS Excel. R provides a flexible framework that offers functionality that goes far beyond the possibilities that are available in Excel. 

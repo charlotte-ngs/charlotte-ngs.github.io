@@ -2,7 +2,11 @@
 title: "Getting Started with Julia"
 author: "Peter von Rohr"
 date: "13 Apr 2015"
-output: html_document
+layout: post
+comments: True
+output: 
+  html_document:
+     theme: united
 ---
 
 ### How is this new kid on the block called "Julia"?

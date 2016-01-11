@@ -1,14 +1,13 @@
-# Problem With rJava On Mac OS X El Capitan
-Peter von Rohr  
-5 January 2016  
-
-
-
-
-
-
-
-
+---
+title: "Problem With rJava On Mac OS X El Capitan"
+author: "Peter von Rohr"
+date: "5 January 2016  "
+layout: post
+comments: True
+output: 
+  html_document:
+     theme: united
+---
 
 Since I upgraded my Mac to OS X El Capitan (version 10.11.2) I am having problems with the R-package [`rJava`](https://www.rforge.net/rJava). From what I understood, eventually, it is not a problem of `rJava` or R or RStudio in the first place, but newer versions of Mac OS X do not play well with the latest versions of Oracle's Java (jdk). Furthermore, some new security features in Mac OS X prevent that environment path settings are passed along to applications like RStudio. 
 
