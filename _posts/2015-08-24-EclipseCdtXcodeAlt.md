@@ -1,7 +1,7 @@
 ---
-title:  Eclipse CDT As Alternative To XCode On The Mac 
-author:  Peter von Rohr 
-date:  24 August 2015 
+title:  "Eclipse CDT As Alternative To XCode On The Mac"
+author:  "Peter von Rohr"
+date: "2015-08-24" 
 layout: post
 comments: True
 output: 
