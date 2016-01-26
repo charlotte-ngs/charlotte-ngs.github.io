@@ -2,7 +2,11 @@
 title:  Eclipse CDT As Alternative To XCode On The Mac 
 author:  Peter von Rohr 
 date:  24 August 2015 
-output: html_document
+layout: post
+comments: True
+output: 
+  html_document:
+     theme: united
 ---
 
 ## Background
@@ -10,3 +14,4 @@ On Mac Os X the default IDE has been XCode for a long time. Recent versions of X
 
 
 ## Alternatives
+`To be continued`
