@@ -82,3 +82,7 @@ devtools::load_all()
 This simulates installation of the package and loading the namespace. Hence all functions become available in the current R-session.
 
 
+## Pushing local repository to GitHub
+So far all changes inside our projects were only committed to the local git repository. This is fine for purposes of version control. But, everything becomes much more interesting and fun, when we start sharing our code with others. One of the repositories that is famous for sharing code is [`GitHub`](https://github.com/). 
+
+Hadley Wickham's book on [R packages](http://r-pkgs.had.co.nz/git.html) has an excellent description on how to synchronize a local repository with GitHub. The description in section `Synchronising with GitHub` assumes that you as a user alread have an account on GitHub. That can easily be created when opening the main website of GitHub on https://github.com. 
