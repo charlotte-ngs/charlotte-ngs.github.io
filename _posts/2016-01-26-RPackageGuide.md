@@ -86,3 +86,32 @@ This simulates installation of the package and loading the namespace. Hence all 
 So far all changes inside our projects were only committed to the local git repository. This is fine for purposes of version control. But, everything becomes much more interesting and fun, when we start sharing our code with others. One of the repositories that is famous for sharing code is [`GitHub`](https://github.com/). 
 
 Hadley Wickham's book on [R packages](http://r-pkgs.had.co.nz/git.html) has an excellent description on how to synchronize a local repository with GitHub. The description in section `Synchronising with GitHub` assumes that you as a user alread have an account on GitHub. That can easily be created when opening the main website of GitHub on https://github.com. 
+
+
+```r
+sessionInfo()
+```
+
+```
+## R version 3.2.3 (2015-12-10)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## locale:
+## [1] LC_COLLATE=German_Switzerland.1252  LC_CTYPE=German_Switzerland.1252   
+## [3] LC_MONETARY=German_Switzerland.1252 LC_NUMERIC=C                       
+## [5] LC_TIME=German_Switzerland.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] magrittr_1.5    formatR_1.2.1   htmltools_0.2.6 tools_3.2.3    
+##  [5] yaml_2.1.13     stringi_1.0-1   rmarkdown_0.8.2 knitr_1.12     
+##  [9] stringr_1.0.0   digest_0.6.9    evaluate_0.8
+```
+
+
+
+
+
