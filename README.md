@@ -1,22 +1,16 @@
-# Charlotte-NGS
+This is a minimal example of a Jekyll-based website using **knitr** and R
+Markdown. The interesting bit of this repo is that you can actually serve the
+Jekyll website locally with R, and R Markdown posts can be compiled
+automatically, with the web pages automatically refreshed as well.
 
-*Charlotte-NGS* is designed to be a platform for projects on Next Generation Sequencing (NGS).
-People who are interested in NGS and would like to contribute something are welcome to join 
-the Charlotte-NGS team. Please send email to ngs.charlotte@gmail.com
+After you are satisfied with the local preview, you can either just push the
+Markdown blog posts to your Github repo (e.g. the `gh-pages` branch), and let
+Github generate the website for you, or host the HTML files generated under the
+`_site/` directory on your own server.
 
------
-
-Current members of the Charlotte-NGS team are primarily involved with the analysis of NGS 
-data and not so much with the wet-lab part of NGS. Hence the main focus of Charlotte-NGS is 
-on analysing NGS data.
-
-## Author
-
-**Charlotte-NGS Team**
-- <https://charlotte-ngs.github.io>
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+The original website was created from `jekyll new .` under the root directory,
+which was part of the [official Jekyll repo](https://github.com/jekyll/jekyll).
+The additional code (R, Makefile) in this repo is under the MIT License, and the
+[blog post](http://yihui.name/knitr-jekyll/2014/09/jekyll-with-knitr.html) I
+wrote is under the [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+International License.

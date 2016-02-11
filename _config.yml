@@ -1,29 +1,15 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
+# Site settings
+title: Charlotte-NGS
+email: ngs.charlotte@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Charlotte-ngs was meant to be a project platform for all kinds
+  of small projects in bioinformatics and computational biology.
+  So far its is mainly a blog on programming in R and on teaching.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://charlotte-ngs.github.io" # the base hostname & protocol for your site
+twitter_username: charlottengs
+github_username:  charlotte-ngs
+permalink: /:year/:month/:title.html
 
-# Permalinks
-permalink:        pretty
-#relative_permalinks: true
-
-# Setup
-title:            Charlotte-Ngs
-tagline:          The Project Platform
-url:              http://charlotte-ngs.github.io
-#paginate:         1
-baseurl:          '/'
-author:
-  name:           Charlotte-Ngs Team
-  url:            
-  email:          ngs.charlotte@gmail.com
-
-# Custom vars
-version:          1.0.0
-github:
-  repo:           https://github.com/charlotte-ngs.github.io
-
-# page list 
-pages_list:       
-  About: '/about'
-  Archive: '/archive'
-  Teaching: '/teaching'
+# Build settings
+markdown: kramdown

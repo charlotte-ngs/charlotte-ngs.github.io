@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Teaching
+permalink: /teaching/
 ---
 
-This page links to courses that I helped teaching. Students who are lost can always get to their respective course site. So far most of the material is in German, but this is hopefully going to change soon. 
+This page contains links to different courses. It is mainly for students who got lost and ended up on the blogging site of [charlotte-ngs](http://charlotte-ngs.github.io). The following courses are available from here:
 
-### Courses
-- Spring 2016: [Genetic Evaluation and Applied Statistical Methods](http://charlotte-ngs.github.io/GELASM/)
-- Fall 2015: [Livestock Breeding and Genomics](http://charlotte-ngs.github.io/LivestockBreedingAndGenomics)
+- Spring 2016: [Genetic Evaluation in Livestock and Applied Statistical Methods in Animal Science](http://charlotte-ngs.github.io/GELASM/)
+- Fall 2015:   [Livestockbreeding and Genomics](http://charlotte-ngs.github.io/LivestockBreedingAndGenomics/)
