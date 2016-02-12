@@ -7,7 +7,7 @@ description: > # this means to ignore newlines until "baseurl:"
   So far its is mainly a blog on programming in R and on teaching.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://charlotte-ngs.github.io" # the base hostname & protocol for your site
-twitter_username: charlottengs
+twitter_username: @charlotte_ngs
 github_username:  charlotte-ngs
 permalink: /:year/:month/:title.html
 
