@@ -3,6 +3,7 @@ layout: post
 title:  Wanted! - Elements Out Of A Flattened Matrix
 published: true
 tags: [genetic relationship matrix]
+mathjax: "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 ---
 
 Given the following problem. Suppose we have a large symmetric matrix of a certain dimension $n$ of which the lower triangular part is stored in a vector. We want to find all row- and column-indices of elements of the original matrix that fullfill a certain property. 
@@ -11,7 +12,18 @@ Given the following problem. Suppose we have a large symmetric matrix of a certa
 The genetic relationship matrix (GRM) between $n$ individuals is a symmetric matrix of dimension $n\times n$. Certain software programs that are used to compute the GRM store the lower triangular part of the matrix in a vector. In case we want to know pairs of individuals that have genetic relationship coefficients above a certain threshold, we need to know the row- and column-indices of the original matrix where the coefficients above a certain threshold occur in the original GRM. 
 
 ### Small example
-Let us try to explain the problem based on a small example. Suppose the GRM between a small number of individuals has the following structure
+Let us try to explain the problem based on a small example. Suppose the GRM between a small number of individuals has the following structure. For the purpose of this blog-post, we create a matrix based on random uniform numbers. Since the diagonals of a GRM are all larger than 1, we add 1 to the diagonal.
+
+
+
+{% highlight r %}
+set.seed(4321)
+nNrInd <- 6
+mGrmP <- matrix(runif(n = nNrInd * nNrInd), ncol = nNrInd)
+mGrm <- crossprod(mGrmP)/nNrInd
+diag(mGrm) <- 1+diag(mGrm)
+print(mGrm)
+{% endhighlight %}
 
 
 
@@ -25,7 +37,7 @@ Let us try to explain the problem based on a small example. Suppose the GRM betw
 ## [6,] 0.2616150 0.3813145 0.2711936 0.1705466 0.1460782 1.4259352
 {% endhighlight %}
 
-### First solution using two nested loops
+### First flattening the matrix into a vector
 The lower triangular part of the above matrix can be stored in a vector as follows. 
 
 
@@ -108,5 +120,100 @@ mGrm[upper.tri(mGrm, diag = TRUE)]
 ##  [7] 0.2441776 0.2385468 0.2064611 1.2571203 0.1192618 0.1402472
 ## [13] 0.1386737 0.1146292 1.1433730 0.2616150 0.3813145 0.2711936
 ## [19] 0.1705466 0.1460782 1.4259352
+{% endhighlight %}
+
+## Finding a given element in the matrix
+Let us assume, we are given the vector produced by the above described flattening of the lower triangular part of our matrix. Furthermore, we want to select some special components in the vector and want to trace back where they occured in the original matrix. That means we want to know the row and the column indices of the special component in the original matrix.
+
+### Diagonal elements
+One group of special elements are the diagonal elements of the original matrix. From our process of flattening the lower triangular part of our original matrix into a vector, we can observe that on a given row i, there are exactly i elements from column 1 until the diagonal element of row i. Based on that observation, the number of elements that are stored in the flattened vector up to the diagonal element of row i corresponds to the sum of all natural numbers from 1 up and including i. 
+
+$$ \sum_{j=i}^i j$$
+
+Computing that number for all rows in the matrix we can store all indices of the flattened vector corresponding to diagonal elements as follows. 
+
+
+{% highlight r %}
+vFlatMatElem <- mGrm[upper.tri(mGrm, diag = TRUE)]
+vFlatDiagIdx <- cumsum(1:nrow(mGrm))
+print(vFlatDiagIdx)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1]  1  3  6 10 15 21
+{% endhighlight %}
+
+From that index vector, all diagonal elements can be extracted by 
+
+
+{% highlight r %}
+vFlatMatElem[vFlatDiagIdx]
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1.375997 1.461426 1.301774 1.257120 1.143373 1.425935
+{% endhighlight %}
+
+Now it is easy to also get all the off-diagonal elements by
+
+
+{% highlight r %}
+vFlatMatElem[-c(vFlatDiagIdx)]
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##  [1] 0.3467317 0.2801808 0.3586357 0.2441776 0.2385468 0.2064611
+##  [7] 0.1192618 0.1402472 0.1386737 0.1146292 0.2616150 0.3813145
+## [13] 0.2711936 0.1705466 0.1460782
+{% endhighlight %}
+
+### A particular element
+Let us assume, we are interested in element 12 of the flattened vector. 
+
+
+{% highlight r %}
+vFlatMatElem[12]
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 0.1402472
+{% endhighlight %}
+
+Our goal is on which row and which column did it occur in the original matrix. Our index vector of the diagonal elements already tells us that element 10 is the last element of the fourth row and element 15 is the last element of the fifth row. Element 12 must then be somewhere on the fifth row. We now want to compute where exactly that element occurs in the matrix. First we start with the row index
+
+
+{% highlight r %}
+nElemIdx <- 12
+nElementRow <- which(vFlatDiagIdx > nElemIdx)[1]
+nElementCol <- nElemIdx-vFlatDiagIdx[nElementRow-1]
+cat(" * Row: ", nElementRow, "\n * Col: ", nElementCol, "\n")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##  * Row:  5 
+##  * Col:  2
+{% endhighlight %}
+
+Checking our result
+
+
+{% highlight r %}
+identical(vFlatMatElem[12], mGrm[nElementRow,nElementCol])
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] TRUE
 {% endhighlight %}
 
