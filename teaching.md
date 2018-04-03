@@ -1,11 +1,12 @@
 ---
-layout: page
-title: Teaching
+title: "Teaching"
 permalink: /teaching/
+layout: page
 ---
 
 This page contains links to different courses. It is mainly for students who got lost and ended up on the blogging site of [charlotte-ngs](http://charlotte-ngs.github.io). The following courses are available from here:
 
+- Spring 2018: [Genetic Evaluation in Livestock and Applied Statistical Methods in Animal Science](http://charlotte-ngs.github.io/GELASMFS2018/)
 - Fall 2017:   [Livestockbreeding and Genomics](https://charlotte-ngs.github.io/LBGHS2017/)
 - Spring 2017: [Genetic Evaluation in Livestock and Applied Statistical Methods in Animal Science](http://charlotte-ngs.github.io/GELASMFS2017/)
 - Fall 2016:   [Livestockbreeding and Genomics](https://charlotte-ngs.github.io/LBGHS2016/)
