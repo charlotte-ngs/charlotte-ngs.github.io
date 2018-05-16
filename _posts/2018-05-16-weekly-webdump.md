@@ -16,6 +16,8 @@ Project [ALTREP](https://svn.r-project.org/R/branches/ALTREP/ALTREP.html) provid
 * Description: https://svn.r-project.org/R/branches/ALTREP/ALTREP.html
 * Presentation by Gabriel Becker, Luke Tierney, Tomas Kalibera: https://gmbecker.github.io/jsm2017/jsm2017.html
 * Presentation from DSC 2017: https://www.r-project.org/dsc/2017/slides/dsc2017.pdf
+* Presentation of Martin Maechler @eRum2018 http://stat.ethz.ch/~maechler/U/R/eRum_2018_ProgR-ALTREP.html
+
 
 
 ## All-Against-All
